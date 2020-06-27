@@ -1,0 +1,46 @@
+<div class="custom-panel" id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row row-stat no-gutters">
+            <div class="col-md-3">
+                <div class="panel panel-default p-0">
+                    <div class="panel-heading ">
+                        <i class="far fa-id-badge mr-2"></i>
+                        Profile
+                    </div>
+                    <div class="panel-body text-center">
+
+                        <img [src]="user.picture | imageLoad: 'user-avatar.png' | async" class="img-avatar" alt="">
+                        <h5 class="mt-2">{{user.name}}</h5>
+                        <p class="user-type">{{user.type}} </p>
+
+
+                        <button *ngIf="!isAccount" type="button" name="" id="password"
+                            class="btn btn-outline-primary nav-item" (click)="navigate(true)"><i
+                                class="fas fa-user-edit mr-2"></i>Edit Account</button>
+
+                        <button *ngIf="isAccount" type="button" name="chngpswd" id="password"
+                            class="btn btn-outline-primary nav-item" (click)="navigate(false)"><i
+                                class="fas fa-unlock-alt mr-2"></i> Change
+                            Password</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default p-0">
+                    <div class="panel-heading text-right">
+                        <i class="{{title.icon}} mr-2"></i>
+                        <span class="mr-2"> {{title.text}}</span>
+                    </div>
+                    <div class="panel-body">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

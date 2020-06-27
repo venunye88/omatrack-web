@@ -1,0 +1,8 @@
+<block-ui name="main">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="app-body router-container" [@routeAnimations]="outlet.isActivated ? outlet.activatedRoute  : ''">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
+</block-ui>

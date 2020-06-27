@@ -1,0 +1,32 @@
+
+.table>tbody>tr>td.cell-detail {
+    line-height: 1.42857;
+}
+
+.table tbody tr td.cell-detail span {
+    display: block
+}
+
+.table tbody tr td.cell-detail .cell-detail-description {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    label.badge {
+        padding: 4px;
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+}
+
+.img-append img {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #ced4da;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+
+.offset-md-8 {
+    margin-left: 65.666667% !important;
+    // 65.6667%
+  }

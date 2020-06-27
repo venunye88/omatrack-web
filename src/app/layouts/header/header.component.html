@@ -1,0 +1,32 @@
+<header>
+
+    <div class="headerwrapper">
+        <div class="header-left">
+            <img src="/assets/images/logo.png" class="logo" />
+            <!-- <button type="button" class="btn btn-success">
+                <i class="fa fa-envelope-o"></i> <span class="badge badge-light">4</span>
+            </button> -->
+            <button type="button" class="btn btn-outline-primary toggle-btn"><i class="fa fa-bars fa-2x"></i></button>
+        </div>
+
+        <div class="header-right">
+            <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle" style="font-size: 16px;">
+                    <img [src]="user.picture | imageLoad: 'user-avatar.png' | async" class="img-avatar" alt="">
+                    {{user.name}}
+                </button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="logout()"> <i
+                                class="fa fa-lock"></i> Logout</a></li>
+                    <li class="divider dropdown-divider"></li>
+                    <li role="menuitem"><a class="dropdown-item" routerLink="/profile"><i class="far fa-id-badge"></i>
+                            Profile</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div><!-- header-right -->
+    </div><!-- headerwrapper -->
+</header>

@@ -1,0 +1,151 @@
+<div class="custom-panel" id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row row-stat" *blockUI="'loading'">
+            <div class="col-sm-5" *ngIf="showForm">
+                <div class="panel panel-default p-0">
+                    <div class="panel-heading ">
+                        <span class="panel-title"><i class="fas fa-edit mr-2"></i> Enter User Details</span>
+                        <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
+                                aria-hidden="true"></i></span>
+                        <!-- <span class="panel-subtitle">These are the basic form elements</span> -->
+                    </div>
+                    <div class="panel-body">
+                        <form [formGroup]="userForm" (ngSubmit)="save(userForm.value)">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" required id="name" formControlName="name"
+                                        [validate-form-control]="userForm.controls.name"
+                                        error-message="Name is required">
+                                    <div class="input-group-append img-append">
+                                        <img [src]="userForm.value.file ? userForm.value.picture : (userForm.value.picture | imageLoad : 'upload.png' | async)"
+                                            alt="" (click)="fu.click()">
+                                        <input type="file" class="d-none" id="image"
+                                            [file-reader]="userForm.controls.picture" #fu formControlName="file">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 form-row m-0 p-0">
+                                <div class="col-sm-6 mb-3 pl-0">
+                                    <label for="lastName">Username</label>
+                                    <input type="text" class="form-control" required id="username"
+                                        formControlName="username" [attr.disabled]="userForm.value.id"
+                                        [validate-form-control]="userForm.controls.username"
+                                        error-message="Username is required">
+                                </div>
+                                <div class="col-sm-6 mb-3 pr-0">
+                                    <label for="number">Staff ID</label>
+                                    <input type="text" class="form-control" id="number" formControlName="number">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 form-row m-0 p-0">
+                                <div class="col-sm-6 mb-3 pl-0">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="text" class="form-control" id="phoneNumber"
+                                        formControlName="phoneNumber">
+                                </div>
+                                <div class="col-sm-6 mb-3 pr-0">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" formControlName="email" id="email"
+                                        ngvemail="userForm.controls.email"
+                                        [validate-form-control]="userForm.controls.email">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 form-row m-0 p-0">
+                                <div class="col-sm-6 mb-3 pl-0">
+                                    <label for="exampleInputEmail1">Role</label>
+                                    <ng-select [items]="roles | async" bindLabel="name" bindValue="id"
+                                        formControlName="profileId" required
+                                        [validate-form-control]="userForm.controls.profileId">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-6 mb-3 pr-0">
+                                    <label for="userType">Type</label>
+                                    <ng-select [items]="userTypes" bindLabel="label" bindValue="value"
+                                        formControlName="type" required
+                                        [validate-form-control]="userForm.controls.type">
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Station</label>
+                                <ng-select [items]="stations | async" bindLabel="name" bindValue="id"
+                                    formControlName="stationId" required>
+                                </ng-select>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" formControlName="password"
+                                    autocomplete="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    formControlName="confirmPassword" [equalTo]="userForm.controls.password"
+                                    [validate-form-control]="userForm.controls.confirmPassword" autocomplete="">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-success mr-2" [disabled]="!userForm.valid">Save
+                                Changes</button>
+                            <button type=" button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                            <button type="button" class="btn btn-danger pull-right" (click)="delete(userForm.value)"
+                                *ngIf="userForm.value.id">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+                <div class="panel panel-default p-0">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="fas fa-users mr-2"></i> Users</span>
+                        <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                            (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New User</button>
+                        <!-- <span class="panel-subtitle">These are the basic form elements</span> -->
+                    </div>
+                    <div class="panel-body p-0">
+                        <div class="row">
+                            <div class="col-md-4 offset-md-8 m-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" [(ngModel)]="filterText"
+                                        placeholder="filter user.....">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="num_col_1">#</th>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Station</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of users | async | user:filterText  ; let i = index;"
+                                        class="pointer" (click)="openForm(user)">
+                                        <td>{{i+1}}</td>
+                                        <td class="cell-detail"><span>{{user.name}}</span>
+                                            <span class="cell-detail-description">{{user.username}}</span>
+                                        </td>
+                                        <td>{{user.phoneNumber}}</td>
+                                        <td>{{user.stationName}}</td>
+                                        <td class="cell-detail"><span>{{user.profileName}}</span> <span
+                                                class="cell-detail-description">{{user.type}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="custom-panel" id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row row-stat" *blockUI="'loading'">
+      <div class="col-sm-5" *ngIf="showForm">
+        <div class="panel panel-default p-0">
+          <div class="panel-heading ">
+            <span class="panel-title"><i class="fas fa-edit mr-2"></i> Enter Role Details</span>
+            <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
+                aria-hidden="true"></i></span>
+            <!-- <span class="panel-subtitle">These are the basic form elements</span> -->
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="roleForm" (ngSubmit)="save(roleForm.value)">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name" required
+                  [validate-form-control]="roleForm.controls.name">
+              </div>
+              <!-- <div class="form-group">
+                                <label>Default View</label>
+                                <ng-select [items]="routes" formControlName="defaultView">
+                                </ng-select>
+                              </div> -->
+              <div class="form-group">
+                <label for="permissions">Permissions</label>
+                <ng-select [items]="privileges" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
+                  bindLabel="name" placeholder="Select Permissions" formControlName="privileges" required
+                  [validate-form-control]="roleForm.controls.privileges" error-message="This is required">
+                </ng-select>
+                <button type="button" class="btn btn-sm btn-link pull-right" (click)="selectAllPrivileges()">Select
+                  All</button>
+              </div>
+              <div class="form-group">
+                <label for="notes">Description</label>
+                <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success mr-2">Save Changes</button>
+              <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+              <button type="button" class="btn btn-danger pull-right" (click)="delete(roleForm.value)"
+                *ngIf="roleForm.value.id">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+        <div class="panel panel-default p-0">
+          <div class="panel-heading">
+            <span class="panel-title"><i class="fas fa-user-shield mr-2"></i> Roles</span>
+            <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block (click)="openForm()"><i
+                class="fa fa-edit" aria-hidden="true"></i> New Role</button>
+            <!-- <span class="panel-subtitle">These are the basic form elements</span> -->
+          </div>
+          <div class="panel-body p-0">
+            <div class="table-responsive-sm">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="num_col_1">#</th>
+                    <th>Name</th>
+                    <!-- <th>Default View</th> -->
+                    <th>Permissions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let role of roles; let i = index;" class="pointer" (click)="openForm(role)">
+                    <td>{{i+1}}</td>
+                    <td>{{role.name}}</td>
+                    <!-- <td>{{role.defaultView}}</td> -->
+                    <td>{{role.privileges?.length}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
