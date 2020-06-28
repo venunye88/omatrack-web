@@ -25,7 +25,7 @@ export class AppRouteNames {
     public static Settings = "settings";
     public static GenericSettings = ":model";
     public static Configs = "configs";
-    public static UserManagement = "user-management";
+    public static StationMgt = "stationmgt";
     public static Users = "users";
     public static Roles = "roles";
     public static UserProfile = "profile";
