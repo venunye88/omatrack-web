@@ -42,6 +42,22 @@ export const routes: Routes = [{
       }
     },
     {
+      path: AppRouteNames.StationMgt,
+      loadChildren: () => import('./station-management/station-management.module').then(m => m.StationManagementModule),
+      data: {
+        title: 'Admin',
+        authorize: Privileges.Administration
+      }
+    },
+    {
+      path: AppRouteNames.Settings,
+      loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule),
+      data: {
+        title: 'Admin',
+        authorize: Privileges.Administration
+      }
+    },
+    {
       path: AppRouteNames.UserProfile,
       loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
       data: { title: 'Profile' }

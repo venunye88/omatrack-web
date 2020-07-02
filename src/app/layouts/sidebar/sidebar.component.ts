@@ -11,6 +11,14 @@ declare interface MenuInfo {
 
 export const DROPDOWNROUTES: MenuInfo[] = [
   { title: "Dashboard", icon: "fas fa-tachometer-alt", route: "/dashboard", privilege: Privileges.Dashboard, subMenus: [] },
+
+  {
+    title: "Station Mgt", icon: "fas fa-store-alt", route: "#",
+    privilege: Privileges.Station,
+    subMenus: [
+      { title: "Stations", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
+    ]
+  },
   {
     title: "Admin", icon: "fas fa-user-cog", route: "#",
     privilege: Privileges.Administration,

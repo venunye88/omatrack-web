@@ -76,6 +76,7 @@ export class Privileges {
     public static Report = "Report";
     public static Setting = "Setting";
     public static Administration = "Administration";
+    public static Station = "Station";
 
 
 }

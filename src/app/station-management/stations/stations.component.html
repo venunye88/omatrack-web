@@ -1,1 +1,99 @@
-<p>stations works!</p>
+<div class="custom-panel" id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row row-stat" *blockUI="'loading'">
+        <div class="col-sm-5" *ngIf="showForm">
+<div class="panel panel-default p-0">
+  <div class="panel-heading"><span class="panel-title"><i class="fa fas-edit mr-2"></i>Enter Station Detail </span> <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
+    aria-hidden="true"></i></span></div>
+    <div class="panel-body">
+      <form [formGroup]="stationForm" (ngSubmit)="save(stationForm.value)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" formControlName="name" class="form-control" id="name" [validate-form-control]="stationForm.controls.name"
+          error-message="Name is required">
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" formControlName="location" class="form-control" id="location">
+        </div>
+
+        <div class="col-sm-12 form-row m-0 p-0">
+          <div class="col-sm-6 mb-3 pl-0">
+            <label for="latitude">Latitude</label>
+            <input type="text" formControlName="latitude" class="form-control" id="latitude">
+          </div>
+          <div class="col-sm-6 mb-3 pr-0">
+            <label for="longitude">Longitude</label>
+            <input type="text" formControlName="longitude" class="form-control" id="longitude">
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
+      </div>
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success mr-2">Save Changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+        <button type="button" class="btn btn-danger pull-right" (click)="delete(stationForm.value)"
+          *ngIf="stationForm.value.id">Delete</button>
+      </form>
+    </div>
+</div>
+          </div>
+
+          <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+<div class="panel panel-default p-0">
+  <div class="panel-heading">
+<span class="panel-title">
+  <i class="fas fa-gas-pump mr-2"></i>Stations</span>
+  <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+(click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Station</button>
+  </div>
+  <div class="panel-body p-0">
+    <div class="row">
+      <div class="col-md-4 offset-md-8 m-3">
+          <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="filterText"
+                  placeholder="filter station.....">
+          </div>
+      </div>
+  </div>
+  <div class="table-responsive-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th class="num_col_1">#</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Location</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let station of stations | async | station:filterText  ; let i = index;" class="pointer" (click)="openForm(station)">
+          <td>{{i+1}}</td>
+          <td>{{station.name}}</td>
+          <td>{{station.phoneNumber}}</td>
+          <td>{{station.location}}</td>
+          <td>{{station.address}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+</div>
+          </div>
+
+      </div>
+  </div>
+</div>

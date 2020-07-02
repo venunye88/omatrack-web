@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   stations: Observable<Station[]>
   userTypes: Enum[]
 
-  @BlockUI('loading') loading: NgBlockUI
+  @BlockUI('loading') loading: NgBlockUI;
 
   constructor(private fb: FormBuilder, private userService: UserService, private roleService: RoleService, private lookUpService: LookupService, private stationService: StationService) { }
 
@@ -61,7 +61,6 @@ export class UserComponent implements OnInit {
   }
 
   async save(user: User) {
-    console.log(user)
     try {
       this.loading.start(LoadingMessages.Saving);
       let res = await this.userService.save(user);
