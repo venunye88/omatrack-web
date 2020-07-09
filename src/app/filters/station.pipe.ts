@@ -11,6 +11,7 @@ export class StationPipe implements PipeTransform {
     return filterBy ? value.filter((station: Station) =>
       station.name.toLowerCase().indexOf(filterBy) !== -1 ||
       station.phoneNumber.toLowerCase().indexOf(filterBy) !== -1 ||
+      (<any>station).regionName.toLowerCase().indexOf(filterBy) !== -1 ||
       station.location.toLowerCase().indexOf(filterBy) !== -1 ||
       station.address.toLowerCase().indexOf(filterBy) !== -1
     ) : value;

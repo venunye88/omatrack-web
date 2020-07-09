@@ -1,1 +1,95 @@
-<p>account works!</p>
+<div class="custom-panel">
+    <div class="row" *blockUI="'loading'">
+        <div class="col-md-5" *ngIf="showForm">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading"><span class="panel-title">
+                        <i class="fa fas-edit mr-2"></i>Enter Account Detail </span> <span class="pull-right mr-2 "
+                        (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
+                    </span></div>
+                <div class="panel-body">
+                    <form [formGroup]="accountForm" (ngSubmit)="save(accountForm.value)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                [validate-form-control]="accountForm.controls.name" error-message="Name is required"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Group</label>
+                            <ng-select [items]="accountGroups | async" bindLabel="name" bindValue="id"
+                                formControlName="accountGroupId" required>
+                            </ng-select>
+                        </div>
+                        <div class="form-group">
+                            <label>Station</label>
+                            <ng-select [items]="stations | async" bindLabel="name" bindValue="id"
+                                formControlName="stationId" required>
+                            </ng-select>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" authorize="Account.Create">Save
+                            Changes</button>
+                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                        <button type="button" class="btn btn-danger pull-right" (click)="delete(accountForm.value)"
+                            *ngIf="accountForm.value.id">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <i class="fas fa-file-invoice-dollar mr-2"></i>Accounts</span>
+                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Group</button>
+                </div>
+                <div class="panel-body p-0">
+                    <div class="row">
+                        <div class="col-md-4 offset-md-8 m-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" [(ngModel)]="filterText"
+                                    placeholder="filter account.....">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="num_col_1">#</th>
+                                    <th>Name</th>
+                                    <th>Account Group</th>
+                                    <th>Station</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let account of accounts | async |account:filterText; let i = index;"
+                                    class="pointer" (click)="openForm(account)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{account.name}}</td>
+                                    <td>{{account.accountGroupName}}</td>
+                                    <td>{{account.stationName}}</td>
+                                    <td>{{account.description}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row ml-0">
+                <button class="col-md-2 btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
+                    ...</button>
+                <!-- <input type="number" class="col-md-1 ml-2 page-size" id="pagesize" [(ngModel)]=""> -->
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -18,13 +18,12 @@ export class LookupService {
   fetchEnum(name: string) {
     return this.http.get<Enum[]>(`${environment.baseApi}/enums/getlist?name=${name}`).toPromise()
   }
-
-  // private getModel(name:string){
-  //   return findWhere()
-  // }
 }
 
 export interface Enum {
   label: string
   value: string
-} 
+}
+
+
+

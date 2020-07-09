@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Station } from 'app/models/station.model';
 import { LoadingMessages } from 'app/shared/config-keys';
 import { MessageBox } from 'app/shared/message-helper';
+import { Region } from 'app/models/region.model';
+import { RegionService } from 'app/services/region.service';
 
 @Component({
   selector: 'app-stations',
@@ -17,15 +19,22 @@ export class StationsComponent implements OnInit {
   showForm: boolean;
   stationForm: FormGroup;
   stations: Observable<Station[]>;
+  regions: Observable<Region[]>;
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private fb: FormBuilder, private stationService: StationService) { }
+  constructor(private fb: FormBuilder, private stationService: StationService, private regionService: RegionService) { }
 
   ngOnInit(): void {
     this.setUpForm();
     this.fetchStations();
+    this.fetchRegions();
   }
+
+  async fetchRegions() {
+    this.regions = this.regionService.get();
+  }
+
   fetchStations() {
     this.stations = this.stationService.get();
   }
@@ -50,7 +59,7 @@ export class StationsComponent implements OnInit {
   }
 
   async delete(station: Station) {
-    let confirm = await MessageBox.confirm("Delete User", `Are you sure you want to delete ${station.name}?`);
+    let confirm = await MessageBox.confirm("Delete Station", `Are you sure you want to delete ${station.name}?`);
     if (!confirm.value) return;
     try {
       this.loading.start(LoadingMessages.Deleting);
@@ -66,6 +75,8 @@ export class StationsComponent implements OnInit {
     this.stationForm = this.fb.group({
       id: 0,
       name: '',
+      regionId: 0,
+      regionName: '',
       phoneNumber: '',
       address: '',
       email: '',

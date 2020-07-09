@@ -45,16 +45,16 @@ export const routes: Routes = [{
       path: AppRouteNames.StationMgt,
       loadChildren: () => import('./station-management/station-management.module').then(m => m.StationManagementModule),
       data: {
-        title: 'Admin',
-        authorize: Privileges.Administration
+        title: 'Station Management',
+        // authorize: Privileges.StationMgt
       }
     },
     {
       path: AppRouteNames.Settings,
       loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule),
       data: {
-        title: 'Admin',
-        authorize: Privileges.Administration
+        title: 'Setting',
+        authorize: Privileges.Setting
       }
     },
     {

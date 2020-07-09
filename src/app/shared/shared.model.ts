@@ -9,12 +9,12 @@ interface AuditFields extends HasId {
     modifiedBy: string
 }
 
-interface LookUp extends AuditFields {
+interface LookUp extends HasId {
     name: string
-    notes: string
+    description: string
 }
 
 
-export { AuditFields, LookUp }
+export { AuditFields, LookUp, HasId }
 
 

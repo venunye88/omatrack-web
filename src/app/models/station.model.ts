@@ -6,4 +6,5 @@ export interface Station extends LookUp {
     location: string
     longitude?: number
     latitude?: number
+    regionId:number
 }

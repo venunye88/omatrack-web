@@ -32,6 +32,10 @@ export class AppRouteNames {
     public static ProfileAccount = "profileaccount";
     public static ProfileSetting = "profilesetting";
     public static ChangePassword = "changepassword";
+    public static AccountGroup = "accountgroup";
+    public static Account = "account";
+    public static FuelProduct = "fuelproducts";
+    public static Region = "regions";
 }
 
 
@@ -71,6 +75,26 @@ export class Privileges {
     public static StationUpdate = "Station.Update";
     public static StationRead = "Station.Read";
     public static StationDelete = "Station.Delete";
+
+    public static AccountGroupCreate = "AccountGroup.Create";
+    public static AccountGroupUpdate = "AccountGroup.Update";
+    public static AccountGroupRead = "AccountGroup.Read";
+    public static AccountGroupDelete = "AccountGroup.Delete";
+
+    public static AccountCreate = "Account.Create";
+    public static AccountUpdate = "Account.Update";
+    public static AccountRead = "Account.Read";
+    public static AccountDelete = "Account.Delete";
+
+    public static FuelProductCreate = "FuelProduct.Create";
+    public static FuelProductUpdate = "FuelProduct.Update";
+    public static FuelProductRead = "FuelProduct.Read";
+    public static FuelProductDelete = "FuelProduct.Delete";
+
+    public static RegionCreate = "Region.Create";
+    public static RegionUpdate = "Region.Update";
+    public static RegionRead = "Region.Read";
+    public static RegionDelete = "Region.Delete";
 
     public static Dashboard = "Dashboard";
     public static Report = "Report";

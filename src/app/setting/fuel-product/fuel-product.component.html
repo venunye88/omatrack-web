@@ -3,27 +3,26 @@
         <div class="col-md-5" *ngIf="showForm">
             <div class="panel panel-default p-0 m-0">
                 <div class="panel-heading"><span class="panel-title">
-                        <i class="fa fas-edit mr-2"></i>Enter Account Group Detail </span> <span
-                        class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
-                            aria-hidden="true"></i>
+                        <i class="fa fas-edit mr-2"></i>Enter Product Detail </span> <span class="pull-right mr-2 "
+                        (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
                     </span></div>
                 <div class="panel-body">
-                    <form [formGroup]="agForm" (ngSubmit)="save(agForm.value)">
+                    <form [formGroup]="fpForm" (ngSubmit)="save(fpForm.value)">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" formControlName="name" class="form-control" id="name"
-                                [validate-form-control]="agForm.controls.name" error-message="Name is required"
+                                [validate-form-control]="fpForm.controls.name" error-message="Name is required"
                                 required>
                         </div>
                         <div class="form-group">
                             <label for="notes">Notes</label>
                             <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success mr-2" authorize="AccountGroup.Create">Save
+                        <button type="submit" class="btn btn-success mr-2" authorize="FuelProduct.Create">Save
                             Changes</button>
                         <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
-                        <button type="button" class="btn btn-danger pull-right" (click)="delete(agForm.value)"
-                            *ngIf="agForm.value.id">Delete</button>
+                        <button type="button" class="btn btn-danger pull-right" (click)="delete(fpForm.value)"
+                            *ngIf="fpForm.value.id">Delete</button>
                     </form>
                 </div>
             </div>
@@ -33,9 +32,9 @@
             <div class="panel panel-default p-0 m-0">
                 <div class="panel-heading">
                     <span class="panel-title">
-                        <i class="fas fa-file-invoice mr-2"></i>Account Groups</span>
+                        <i class="fas fa-oil-can mr-2"></i>Fuel Products</span>
                     <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
-                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Group</button>
+                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Product</button>
                 </div>
                 <div class="panel-body p-0">
                     <div class="table-responsive-sm">
@@ -48,11 +47,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let group of accountGroups | async; let i = index;" class="pointer"
-                                    (click)="openForm(group)">
+                                <tr *ngFor="let product of fuelProducts | async; let i = index;" class="pointer"
+                                    (click)="openForm(product)">
                                     <td>{{i+1}}</td>
-                                    <td>{{group.name}}</td>
-                                    <td>{{group.description}}</td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.description}}</td>
                                 </tr>
                             </tbody>
                         </table>
