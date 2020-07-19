@@ -40,5 +40,3 @@ export class SettingPageComponent implements OnInit {
   }
 
 }
-
-

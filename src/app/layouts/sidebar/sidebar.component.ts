@@ -14,9 +14,10 @@ export const DROPDOWNROUTES: MenuInfo[] = [
 
   {
     title: "Station Mgt", icon: "fas fa-store-alt", route: "#",
-    privilege: Privileges.Station,
+    privilege: Privileges.Administration,
     subMenus: [
       { title: "Stations", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
+      { title: "Price Groups", icon: "fa fa-tags", route: "/stationmgt/pricegroups", privilege: Privileges.PriceGroupRead, subMenus: [] },
     ]
   },
   {

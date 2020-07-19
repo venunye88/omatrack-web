@@ -11,7 +11,7 @@
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" formControlName="name" class="form-control" id="name"
-                  [validate-form-control]="stationForm.controls.name" error-message="Name is required">
+                  [validate-form-control]="stationForm.controls.name" error-message="Name is required" required>
               </div>
 
               <div class="form-group">
@@ -26,7 +26,14 @@
 
               <div class="form-group">
                 <label>Region</label>
-                <ng-select [items]="regions | async" bindLabel="name" bindValue="id" formControlName="regionId"
+                <ng-select [items]="regions | async" bindLabel="name" bindValue="id" formControlName="regionId" 
+                  required >
+                </ng-select>
+              </div>
+
+              <div class="form-group">
+                <label>Price Group</label>
+                <ng-select [items]="priceGroups | async" bindLabel="name" bindValue="id" formControlName="priceGroupId"
                   required>
                 </ng-select>
               </div>
@@ -45,11 +52,7 @@
                 <label for="address">Address</label>
                 <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
               </div>
-              <div class="form-group">
-                <label for="notes">Notes</label>
-                <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
-              </div>
-              <button type="submit" class="btn btn-success mr-2">Save Changes</button>
+              <button type="submit" class="btn btn-success mr-2" authorize="Station.Create" [disabled]="!stationForm.valid">Save Changes</button>
               <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
               <button type="button" class="btn btn-danger pull-right" (click)="delete(stationForm.value)"
                 *ngIf="stationForm.value.id">Delete</button>
@@ -59,7 +62,7 @@
       </div>
 
       <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
-        <div class="panel panel-default p-0">
+        <div class="panel panel-default p-0 mb-0">
           <div class="panel-heading">
             <span class="panel-title">
               <i class="fas fa-gas-pump mr-2"></i>Stations</span>
@@ -83,7 +86,7 @@
                     <th>Phone Number</th>
                     <th>Location</th>
                     <th>Region</th>
-                    <th>Address</th>
+                    <th>Price Group</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -94,7 +97,7 @@
                     <td>{{station.phoneNumber}}</td>
                     <td>{{station.location}}</td>
                     <td>{{station.regionName}}</td>
-                    <td>{{station.address}}</td>
+                    <td>{{station.priceGroupName}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -102,8 +105,9 @@
 
           </div>
         </div>
+        <button class="btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
+          ...</button>
       </div>
-
     </div>
   </div>
 </div>

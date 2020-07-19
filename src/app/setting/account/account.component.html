@@ -30,7 +30,7 @@
                             <label for="notes">Notes</label>
                             <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success mr-2" authorize="Account.Create">Save
+                        <button type="submit" class="btn btn-success mr-2" authorize="Account.Create" [disabled]="!accountForm.valid">Save
                             Changes</button>
                         <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
                         <button type="button" class="btn btn-danger pull-right" (click)="delete(accountForm.value)"
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="row ml-0">
-                <button class="col-md-2 btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
+                <button class="btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
                     ...</button>
                 <!-- <input type="number" class="col-md-1 ml-2 page-size" id="pagesize" [(ngModel)]=""> -->
             </div>

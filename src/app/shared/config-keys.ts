@@ -36,6 +36,8 @@ export class AppRouteNames {
     public static Account = "account";
     public static FuelProduct = "fuelproducts";
     public static Region = "regions";
+    public static Station = "stations";
+    public static PriceGroup = "pricegroups";
 }
 
 
@@ -95,6 +97,11 @@ export class Privileges {
     public static RegionUpdate = "Region.Update";
     public static RegionRead = "Region.Read";
     public static RegionDelete = "Region.Delete";
+
+    public static PriceGroupCreate = "PriceGroup.Create";
+    public static PriceGroupUpdate = "PriceGroup.Update";
+    public static PriceGroupRead = "PriceGroup.Read";
+    public static PriceGroupDelete = "PriceGroup.Delete";
 
     public static Dashboard = "Dashboard";
     public static Report = "Report";
