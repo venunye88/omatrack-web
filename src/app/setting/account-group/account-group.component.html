@@ -19,7 +19,7 @@
                             <label for="notes">Notes</label>
                             <textarea class="form-control" id="notes" rows="3" formControlName="description"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success mr-2" authorize="AccountGroup.Create">Save
+                        <button type="submit" class="btn btn-success mr-2" authorize="AccountGroup.Create" [disabled]="!agForm.valid">Save
                             Changes</button>
                         <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
                         <button type="button" class="btn btn-danger pull-right" (click)="delete(agForm.value)"

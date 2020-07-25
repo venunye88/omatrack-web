@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PriceGroup, PriceList } from 'app/models/price-group.model';
 import { PriceGroupService } from 'app/services/price-group.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -8,10 +8,9 @@ import { MessageBox, Toast } from 'app/shared/message-helper';
 import { LoadingMessages } from 'app/shared/config-keys';
 import { FuelProductService } from 'app/services/fuel-product.service';
 import { FuelProduct } from 'app/models/fuel-product.model';
-import { findWhere, where, sortBy, last, pluck, uniq } from "underscore";
+import { findWhere, where, last, pluck } from "underscore";
 import { WebUtils } from 'app/shared/web-utils';
 import { isNullOrUndefined } from 'util';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-price-group',
@@ -27,7 +26,8 @@ export class PriceGroupComponent implements OnInit {
   showForm: boolean;
   selectedGroupId: any;
   selectedFuel: FuelProduct;
-  maxDate = moment(new Date()).format('YYYY-MM-DD')
+  // maxDate = moment(new Date()).format('YYYY-MM-DD')
+  maxDate = WebUtils.getIsoDateString(new Date())
 
   @BlockUI('loading') loading: NgBlockUI;
 

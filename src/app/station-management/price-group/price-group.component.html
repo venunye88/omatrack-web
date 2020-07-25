@@ -1,110 +1,115 @@
 <div class="custom-panel" id="page-wrapper">
-    <div class="container-fluid">
-      <div class="row row-stat" *blockUI="'loading'">
+  <div class="container-fluid">
+    <div class="row row-stat" *blockUI="'loading'">
 
-    <div class="col-sm-6" *ngIf="showForm">
-      <div class="panel panel-default p-0">
-        <div class="panel-heading"><span class="panel-title"><i class="fa fas-edit mr-2"></i>Enter Price Group Detail
-          </span> <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
-              aria-hidden="true"></i></span></div>
-        <div class="panel-body">
+      <div class="col-sm-6" *ngIf="showForm">
+        <div class="panel panel-default p-0">
+          <div class="panel-heading"><span class="panel-title"><i class="fa fas-edit mr-2"></i>Enter Price Group Detail
+            </span> <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
+                aria-hidden="true"></i></span></div>
+          <div class="panel-body">
             <form [formGroup]="pgForm" (ngSubmit)="save(pgForm.value)">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" formControlName="name" class="form-control" id="name"
-                      [validate-form-control]="pgForm.controls.name" error-message="Name is required" required>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" class="form-control" id="name"
+                  [validate-form-control]="pgForm.controls.name" error-message="Name is required" required>
+              </div>
+
+              <div formArrayName="priceLists">
+                <div *ngFor="let rec of priceLists.controls;let i = index" [formGroupName]="i">
+                  <div class="form-row">
+                    <div class="col-8">
+                      <label>Fuel Product</label>
+                      <ng-select [items]="fuelProducts |async" bindLabel="name" bindValue="id"
+                        formControlName="fuelProductId" placeholder="Select product" (change)="onFuelSelected($event)">
+                      </ng-select>
+                    </div>
+                    <div class="col-4">
+                      <label for="price">Unit Price</label>
+                      <input type="number" name="price" class="form-control text-right p-2" style="height: 35px;"
+                        placeholder="Enter price" formControlName="unitPrice">
+                    </div>
                   </div>
+                  <div class="form-row">
+                    <div [ngClass]="{'col-10':(priceLists.length>1),'col-12':!(priceLists.length>1)}">
+                      <label for="date">Effective Date</label>
+                      <input type="date" name="date" class="form-control p-2" style="height: 35px;" [max]="maxDate"
+                        formControlName="effectiveDate">
+                    </div>
+                    <div class="col-2" *ngIf="priceLists.length>1">
+                      <br>
+                      <button type="button" name="btn-prix" class="btn btn-sm btn-danger pull-right"
+                        (click)="removePrice(i)" style="margin-top: 5px;">
+                        <i class="fas fa-trash"></i></button>
+                    </div>
+                  </div>
+                  <hr *ngIf="priceLists.length>1" style="margin-bottom: 8px;border-width:0.5px;background:#7a7676"
+                    class="mt-3">
+                </div>
+              </div>
+              <div class="form-row m-0">
+                <button type="button" class="btn btn-sm btn-primary mt-2 pull-right" (click)="addPriceList(true)">
+                  <i class="fas fa-plus"></i> Add More
+                </button>
+              </div>
 
-<div formArrayName="priceLists">
-    <div  *ngFor="let rec of priceLists.controls;let i = index" [formGroupName]="i">
-    <div class="form-row">
-        <div class="col-8">
-            <label>Fuel Product</label>
-                <ng-select [items]="fuelProducts |async" bindLabel="name" bindValue="id" formControlName="fuelProductId"
-                placeholder="Select product" (change)="onFuelSelected($event)">
-                </ng-select>
-        </div>
-        <div class="col-4">
-            <label for="price">Unit Price</label>
-            <input type="number" name="price" class="form-control text-right p-2" style="height: 35px;" placeholder="Enter price" formControlName="unitPrice">
-        </div>
-    </div>
-    <div class="form-row">
-        <div [ngClass]="{'col-10':(priceLists.length>1),'col-12':!(priceLists.length>1)}">
-            <label for="date">Effective Date</label>
-            <input type="date" name="date" class="form-control p-2" style="height: 35px;" [max]="maxDate" formControlName="effectiveDate" >
-        </div>
-        <div class="col-2" *ngIf="priceLists.length>1">
-            <br>
-            <button type="button" name="btn-prix"  class="btn btn-sm btn-danger pull-right" (click)="removePrice(i)" style="margin-top: 5px;">
-                <i class="fas fa-trash"></i></button>
-        </div>
-    </div>
-    <hr *ngIf="priceLists.length>1" style="margin-bottom: 8px;border-width:0.5px;background:#7a7676" class="mt-3">
-    </div>
-</div>
-    <div class="form-row m-0">
-<button type="button" class="btn btn-sm btn-primary mt-2 pull-right" (click)="addPriceList(true)">
-    <i class="fas fa-plus"></i> Add More
-    </button>
-      </div>
+              <hr style="margin-bottom: 8px;border-width:0.5px;background:#0728bb">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-secondary pull-right" (click)="closeForm()">Cancel</button>
+                  <button type="submit" class="btn btn-success  mr-2  pull-right" authorize="PriceGroup.Create"
+                    [disabled]="!pgForm.valid">Save
+                    Changes</button>
+                </div>
+              </div>
+            </form>
 
-      <hr style="margin-bottom: 8px;border-width:0.5px;background:#0728bb" class="mt">
-      <div class="form-row">    
-       <div class="col-md-12">
-           <button type="button" class="btn btn-secondary pull-right" (click)="closeForm()">Cancel</button>
-            <button type="submit" class="btn btn-success  mr-2  pull-right" authorize="PriceGroup.Create" [disabled]="!pgForm.valid">Save
-                Changes</button>
-       </div>
-      </div>
-        </form>
-            
-        </div>
-    </div>
-</div>
-
-
-<div [ngClass]="showForm ? 'col-md-6' : 'col-md-12'">
-    <div class="panel panel-default p-0 mb-0">
-      <div class="panel-heading">
-        <span class="panel-title">
-          <i class="fas fa-tags mr-2"></i>Price Groups</span>
-        <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block (click)="openForm()"><i
-            class="fa fa-edit" aria-hidden="true"></i> New Price Group</button>
-      </div>
-      <div class="panel-body p-0">
-        <div class="row">
-          <div class="col-md-4 offset-md-8 m-3">
-            <ng-select [items]="priceGroups |async" bindLabel="name" bindValue="id" [(ngModel)]="selectedGroupId"
-            (ngModelChange)="loadPriceList(selectedGroupId)" placeholder="Select Group">
-        </ng-select>
           </div>
         </div>
-        <div class="table-responsive-sm">
-          <table class="table table-hover mb-0">
-            <thead>
-              <tr>
-                <th class="num_col_1">#</th>
-                <th>Product</th>
-                <th>Unit Price</th>
-              </tr>
-            </thead>
-            <tbody *ngIf="this.selectedGroupId">
-              <tr *ngFor="let price of selectedGroup?.priceLists ; let i = index;" class="pointer"
-                (click)="openForm(selectedGroup)">
-                <td>{{i+1}}</td>
-                <td>{{price.fuelProductName}}</td>
-                <td>{{price.unitPrice}}</td>
-              </tr>
-            </tbody>
-          </table>
+      </div>
+
+
+      <div [ngClass]="showForm ? 'col-md-6' : 'col-md-12'">
+        <div class="panel panel-default p-0 mb-0">
+          <div class="panel-heading">
+            <span class="panel-title">
+              <i class="fas fa-tags mr-2"></i>Price Groups</span>
+            <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block (click)="openForm()"><i
+                class="fa fa-edit" aria-hidden="true"></i> New Price Group</button>
+          </div>
+          <div class="panel-body p-0">
+            <div class="row">
+              <div class="col-md-4 offset-md-8 m-3">
+                <ng-select [items]="priceGroups |async" bindLabel="name" bindValue="id" [(ngModel)]="selectedGroupId"
+                  (ngModelChange)="loadPriceList(selectedGroupId)" placeholder="Select Group">
+                </ng-select>
+              </div>
+            </div>
+            <div class="table-responsive-sm">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="num_col_1">#</th>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="this.selectedGroupId">
+                  <tr *ngFor="let price of selectedGroup?.priceLists ; let i = index;" class="pointer"
+                    (click)="openForm(selectedGroup)">
+                    <td>{{i+1}}</td>
+                    <td>{{price.fuelProductName}}</td>
+                    <td>{{price.unitPrice}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
         </div>
-
+        <!-- load more -->
       </div>
-    </div>
-<!-- load more -->
-</div>
 
-      </div>
     </div>
+  </div>
 </div>

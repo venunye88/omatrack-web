@@ -8,10 +8,11 @@ import { SettingPageComponent } from './setting-page/setting-page.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { FuelProductComponent } from './fuel-product/fuel-product.component';
 import { RegionComponent } from './region/region.component';
+import { FinancialYearComponent } from './financial-year/financial-year.component';
 
 
 @NgModule({
-  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent],
+  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent, FinancialYearComponent],
   imports: [
     SharedModule,
     SettingRoutingModule

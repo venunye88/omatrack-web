@@ -21,6 +21,11 @@ export const DROPDOWNROUTES: MenuInfo[] = [
     ]
   },
   {
+    title: "Settings", icon: "fas fa-cogs", route: "/settings",
+    privilege: Privileges.Setting,
+    subMenus: []
+  },
+  {
     title: "Admin", icon: "fas fa-user-cog", route: "#",
     privilege: Privileges.Administration,
     subMenus: [
@@ -28,11 +33,7 @@ export const DROPDOWNROUTES: MenuInfo[] = [
       { title: "Manage Users", icon: "fa fa-users", route: "/admin/users", privilege: Privileges.UserRead, subMenus: [] },
     ]
   },
-  {
-    title: "Settings", icon: "fas fa-cogs", route: "/settings",
-    privilege: Privileges.Setting,
-    subMenus: []
-  },
+
   {
     title: "Form", icon: "fa fa-bars", route: "#", privilege: Privileges.Administration, subMenus: [
       { title: "Form Child 1", icon: "fa fa-home", route: "/forms", privilege: Privileges.Administration, subMenus: [] },

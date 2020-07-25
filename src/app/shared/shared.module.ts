@@ -13,9 +13,11 @@ import { UserPipe } from 'app/filters/user.pipe';
 import { FilterModule } from 'app/filters/filter.module';
 import { AuthorizeDirective } from 'app/directives/authorize.directive';
 import { UnauthorizedPageComponent } from './unauthorized-page.component';
+import { ValidateFormDirective } from 'app/directives/validate-form.directive';
 
 @NgModule({
   declarations: [
+    ValidateFormDirective,
     ValidateFormControlDirective,
     FileReaderDirective,
     AuthorizeDirective,
@@ -33,6 +35,7 @@ import { UnauthorizedPageComponent } from './unauthorized-page.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ValidateFormDirective,
     ValidateFormControlDirective,
     NgSelectModule,
     BlockUIModule,

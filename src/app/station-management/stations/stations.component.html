@@ -26,8 +26,8 @@
 
               <div class="form-group">
                 <label>Region</label>
-                <ng-select [items]="regions | async" bindLabel="name" bindValue="id" formControlName="regionId" 
-                  required >
+                <ng-select [items]="regions | async" bindLabel="name" bindValue="id" formControlName="regionId"
+                  required>
                 </ng-select>
               </div>
 
@@ -52,7 +52,8 @@
                 <label for="address">Address</label>
                 <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
               </div>
-              <button type="submit" class="btn btn-success mr-2" authorize="Station.Create" [disabled]="!stationForm.valid">Save Changes</button>
+              <button type="submit" class="btn btn-success mr-2" authorize="Station.Create"
+                [disabled]="!stationForm.valid">Save Changes</button>
               <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
               <button type="button" class="btn btn-danger pull-right" (click)="delete(stationForm.value)"
                 *ngIf="stationForm.value.id">Delete</button>
@@ -66,8 +67,9 @@
           <div class="panel-heading">
             <span class="panel-title">
               <i class="fas fa-gas-pump mr-2"></i>Stations</span>
-            <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block (click)="openForm()"><i
-                class="fa fa-edit" aria-hidden="true"></i> New Station</button>
+            <!-- (click)="openForm()" -->
+            <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+              routerLink="/stationmgt/stations/form"><i class="fa fa-edit" aria-hidden="true"></i> New Station</button>
           </div>
           <div class="panel-body p-0">
             <div class="row">

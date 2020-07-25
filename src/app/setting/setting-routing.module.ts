@@ -7,6 +7,7 @@ import { AccountComponent } from './account/account.component';
 import { FuelProduct } from 'app/models/fuel-product.model';
 import { FuelProductComponent } from './fuel-product/fuel-product.component';
 import { RegionComponent } from './region/region.component';
+import { FinancialYearComponent } from './financial-year/financial-year.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: AppRouteNames.Region,
         component: RegionComponent
+      },
+      {
+        path: AppRouteNames.FinancialYear,
+        component: FinancialYearComponent
       },
     ]
   }

@@ -3,10 +3,11 @@ import { StationManagementRoutingModule } from './station-management-routing.mod
 import { StationsComponent } from './stations/stations.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { PriceGroupComponent } from './price-group/price-group.component';
+import { StationFormComponent } from './station-form/station-form.component';
 
 
 @NgModule({
-  declarations: [StationsComponent, PriceGroupComponent],
+  declarations: [StationsComponent, PriceGroupComponent, StationFormComponent],
   imports: [
     SharedModule,
     StationManagementRoutingModule

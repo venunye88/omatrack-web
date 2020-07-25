@@ -1,4 +1,5 @@
 import { LookUp } from 'app/shared/shared.model';
+import { FuelStock } from './fuel-stock.model';
 
 export interface Station extends LookUp {
     address: string
@@ -6,5 +7,7 @@ export interface Station extends LookUp {
     location: string
     longitude?: number
     latitude?: number
-    regionId:number
+    regionId: number
+    priceGroupId: number
+    fuelStocks: Array<FuelStock>
 }

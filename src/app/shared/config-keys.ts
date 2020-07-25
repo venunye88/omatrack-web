@@ -38,6 +38,7 @@ export class AppRouteNames {
     public static Region = "regions";
     public static Station = "stations";
     public static PriceGroup = "pricegroups";
+    public static FinancialYear = "financialyears";
 }
 
 
@@ -102,6 +103,11 @@ export class Privileges {
     public static PriceGroupUpdate = "PriceGroup.Update";
     public static PriceGroupRead = "PriceGroup.Read";
     public static PriceGroupDelete = "PriceGroup.Delete";
+
+    public static FinancialYearCreate = "FinancialYear.Create";
+    public static FinancialYearUpdate = "FinancialYear.Update";
+    public static FinancialYearRead = "FinancialYear.Read";
+    public static FinancialYearDelete = "FinancialYear.Delete";
 
     public static Dashboard = "Dashboard";
     public static Report = "Report";

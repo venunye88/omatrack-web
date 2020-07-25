@@ -5,6 +5,7 @@ import { UserComponent } from 'app/admin/user/user.component';
 import { RoleComponent } from 'app/admin/role/role.component';
 import { StationsComponent } from './stations/stations.component';
 import { PriceGroupComponent } from './price-group/price-group.component';
+import { StationFormComponent } from './station-form/station-form.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,20 @@ const routes: Routes = [
         component: StationsComponent,
         data: {
           title: 'Stations', authorize: Privileges.StationRead
+        }
+      },
+      {
+        path: `${AppRouteNames.Station}/form`,
+        component: StationFormComponent,
+        data: {
+          title: 'Station Form', authorize: Privileges.StationCreate
+        }
+      },
+      {
+        path: `${AppRouteNames.Station}/form/:id`,
+        component: StationFormComponent,
+        data: {
+          title: 'Station Form', authorize: Privileges.StationUpdate
         }
       },
       {

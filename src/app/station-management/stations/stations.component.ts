@@ -4,12 +4,13 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StationService } from 'app/services/station.service';
 import { Observable, of } from 'rxjs';
 import { Station } from 'app/models/station.model';
-import { LoadingMessages } from 'app/shared/config-keys';
+import { LoadingMessages, AppRouteNames } from 'app/shared/config-keys';
 import { MessageBox } from 'app/shared/message-helper';
 import { Region } from 'app/models/region.model';
 import { RegionService } from 'app/services/region.service';
 import { PriceGroupLookUp } from 'app/models/price-group.model';
 import { PriceGroupService } from 'app/services/price-group.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stations',
@@ -28,7 +29,7 @@ export class StationsComponent implements OnInit {
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private fb: FormBuilder, private stationService: StationService, private regionService: RegionService, private priceGroupService: PriceGroupService) { }
+  constructor(private fb: FormBuilder, private stationService: StationService, private regionService: RegionService, private priceGroupService: PriceGroupService, private router: Router) { }
 
   ngOnInit(): void {
     this.setUpForm();
@@ -63,9 +64,11 @@ export class StationsComponent implements OnInit {
   // }
 
   openForm(station?: Station) {
-    this.stationForm.reset();
-    this.showForm = true
-    if (station != null) { this.stationForm.patchValue(station); }
+    // this.stationForm.reset();
+    // this.showForm = true
+    // if (station != null) { this.stationForm.patchValue(station); }
+
+    this.router.navigate([`${AppRouteNames.StationMgt}/${AppRouteNames.Station}/form`, station.id]);
   }
 
   closeForm() { this.showForm = false; }
@@ -124,7 +127,7 @@ export class StationsComponent implements OnInit {
       description: '',
       latitude: null,
       longitude: null
-    })
+    });
   }
 
 }

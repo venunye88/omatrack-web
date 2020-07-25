@@ -13,7 +13,8 @@ export const SetUps: SetUpModel[] = [
   { label: 'Account Group', name: "accountgroup", route: `/${AppRouteNames.Settings}/${AppRouteNames.AccountGroup}` },
   { label: 'Account', name: "account", route: `/${AppRouteNames.Settings}/${AppRouteNames.Account}` },
   { label: 'Fuel Product', name: "fuelproduct", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelProduct}` },
-  { label: 'Region', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` }
+  { label: 'Region', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` },
+  { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` }
 ]
 
 

@@ -1,0 +1,84 @@
+<div class="custom-panel">
+    <div class="row" *blockUI="'loading'">
+        <div class="col-md-5" *ngIf="showForm">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading"><span class="panel-title">
+                        <i class="fa fas-edit mr-2"></i>Enter Financial Year Detail </span> <span
+                        class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
+                            aria-hidden="true"></i>
+                    </span></div>
+                <div class="panel-body">
+                    <form [formGroup]="fyForm" (ngSubmit)="save(fyForm.value)">
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="number" formControlName="year" class="form-control" id="year"
+                                [validate-form-control]="fyForm.controls.year" error-message="Year is required"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" formControlName="startDate" class="form-control" id="startDate" (change)="onChange(fyForm.value)"
+                            [validate-form-control]="fyForm.controls.startDate" error-message="Start Date is required"
+                            required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" formControlName="endDate" class="form-control" id="endDate"
+                            [validate-form-control]="fyForm.controls.endDate" error-message="End Date is required"
+                            required>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" authorize="FinancialYear.Create" [disabled]="!fyForm.valid">Save
+                            Changes</button>
+                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <i class="far fa-calendar-alt mr-2"></i>Financial Years</span>
+                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                        (click)="openForm()" *ngIf="!(count>0) "><i class="fa fa-edit" aria-hidden="true"></i> New Year</button>
+                </div>
+                <div class="panel-body p-0">
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="num_col_1">#</th>
+                                    <th>Year</th>
+                                    <th>Start Year</th>
+                                    <th>End Year</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let year of financialYears | async; let i = index;" class="pointer"
+                                    (click)="openForm(year)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{year.year}}</td>
+                                    <td>{{year.startDate | date:'fullDate'}}</td>
+                                    <td>{{year.endDate | date:'fullDate'}}</td>
+                                    <td >
+                                        <span class="badge" [ngClass]="{'badge-danger': year.isClosed,'badge-success': !year.isClosed}">{{year.isClosed?'Closed':'Open'}}</span>
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row ml-0">
+                <button class="btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
+                    ...</button>
+            </div>
+        </div>
+
+    </div>
+</div>
