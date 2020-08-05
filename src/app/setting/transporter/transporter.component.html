@@ -1,0 +1,71 @@
+<div class="custom-panel">
+    <div class="row" *blockUI="'loading'">
+        <div class="col-md-5" *ngIf="showForm">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading"><span class="panel-title">
+                        <i class="fa fas-edit mr-2"></i>Enter Transporter Detail </span> <span class="pull-right mr-2 "
+                        (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
+                    </span></div>
+                <div class="panel-body">
+                    <form [formGroup]="transporterForm" (ngSubmit)="save(transporterForm.value)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                [validate-form-control]="transporterForm.controls.name" error-message="Name is required"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" rows="3" formControlName="address"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" authorize="Transporter.Create">Save
+                            Changes</button>
+                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                        <button type="button" class="btn btn-danger pull-right" (click)="delete(transporterForm.value)"
+                            *ngIf="transporterForm.value.id">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <i class="fas fa-truck mr-2"></i>Transporter</span>
+                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Transporter</button>
+                </div>
+                <div class="panel-body p-0">
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="num_col_1">#</th>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let transporter of transporters | async; let i = index;" class="pointer"
+                                    (click)="openForm(transporter)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{transporter.name}}</td>
+                                    <td>{{transporter.phoneNumber}}</td>
+                                    <td>{{transporter.address}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

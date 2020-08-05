@@ -111,12 +111,14 @@ ul#side-menu a.active i, ul#side-menu a:hover i  {
 }
 ul#side-menu a.active {
     // background: #ff6384;
-    background:#1f6b9e;
+    // background:#1f6b9e;
+    background:#3c90b8;
     color: #fff;
 }
 ul#side-menu a:hover{
     color: #fff;
-    background-color: #1f6b9e;
+    // background-color: #1f6b9e;
+    background:#3c90b8;
     text-decoration: none;
 }
 ul#side-menu li.user-pro a {
@@ -1172,3 +1174,22 @@ input::-webkit-inner-spin-button {
   input[type=number] {
     -moz-appearance: textfield;
   }
+
+
+  // grid
+.col-md-offset-4{margin-left:33.33333333%}
+.col-md-offset-8 {
+  margin-left: 65.666667% !important;
+  // 65.6667%
+}
+
+.required::after{
+  color:#c62323;
+  font-size: medium;
+  margin-left: 2px;
+  content: '*';
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

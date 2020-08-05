@@ -68,7 +68,7 @@
                             <div formArrayName="fuelStocks">
                                 <div *ngFor="let rec of fuelStocks.controls;let i = index" [formGroupName]="i">
                                     <div class="form-row col-sm-12 m-0 p-0">
-                                        <div class="col-sm-6 mb-3 pl-0 form-group">
+                                        <div class="col-sm-4 mb-3 pl-0 form-group">
                                             <label>Fuel</label>
                                             <ng-select class="custom" [items]="products" bindLabel="fuelProductName"
                                                 bindValue="fuelProductId" formControlName="fuelProductId"
@@ -76,9 +76,15 @@
                                             </ng-select>
                                         </div>
 
-                                        <div [ngClass]="{'col-sm-4':(fuelStocks.length>1),'col-sm-6':!(fuelStocks.length>1)}"
-                                            class="mb-3 pr-0 form-group">
-                                            <label for="location">Reorder Level</label>
+                                        <div [ngClass]="{'col-sm-3':(fuelStocks.length>1),'col-sm-4':!(fuelStocks.length>1)}"
+                                            class="mb-3 pl-0 form-group">
+                                            <label for="initialStock">Initial Stock</label>
+                                            <input type="number" formControlName="initialStock"
+                                                class="form-control text-right" min="0" value="0">
+                                        </div>
+                                        <div [ngClass]="{'col-sm-3':(fuelStocks.length>1),'col-sm-4':!(fuelStocks.length>1)}"
+                                            class="mb-3 pl-0 form-group">
+                                            <label for="reorderLevel">Reorder Level</label>
                                             <input type="number" formControlName="reorderLevel"
                                                 class="form-control text-right" min="0" value="0">
                                         </div>

@@ -8,6 +8,8 @@ import { FuelProduct } from 'app/models/fuel-product.model';
 import { FuelProductComponent } from './fuel-product/fuel-product.component';
 import { RegionComponent } from './region/region.component';
 import { FinancialYearComponent } from './financial-year/financial-year.component';
+import { TaxComponent } from './tax/tax.component';
+import { TransporterComponent } from './transporter/transporter.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,14 @@ const routes: Routes = [
       {
         path: AppRouteNames.FinancialYear,
         component: FinancialYearComponent
+      },
+      {
+        path: AppRouteNames.Tax,
+        component: TaxComponent
+      },
+      {
+        path: AppRouteNames.Transporter,
+        component: TransporterComponent
       },
     ]
   }

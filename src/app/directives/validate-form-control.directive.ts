@@ -14,7 +14,7 @@ export class ValidateFormControlDirective implements AfterViewInit {
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngAfterViewInit() {
-    this.control.valueChanges.subscribe(() => this.validate());
+    this.control?.valueChanges.subscribe(() => this.validate());
   }
 
   validate() {

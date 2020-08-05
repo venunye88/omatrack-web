@@ -1,14 +1,14 @@
 <div class="sidebar hidden-sm-down">
     <ul class="nav in" id="side-menu">
-        <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+        <!-- <li class="sidebar-search hidden-sm hidden-md hidden-lg">
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" placeholder="Search..."> <span class="input-group-btn">
                     <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
                 </span></div>
-        </li>
+        </li> -->
 
         <li *ngFor="let menu of menuItems; let i=index" id="sm{{i}}">
-            <a [routerLink]="[menu.route]" class="parent-active" [authorize]="menu.privilege"  appNavDropdownToggle>
+            <a [routerLink]="[menu.route]" class="parent-active" [authorize]="menu.privilege" appNavDropdownToggle>
                 <i class="icon {{menu.icon}} mr-2"></i>
                 <span class="hide-menu">{{menu.title}}</span>
                 <i *ngIf="menu.subMenus.length>0" class="fa fa-caret-right caret-right">

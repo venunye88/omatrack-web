@@ -39,6 +39,11 @@ export class AppRouteNames {
     public static Station = "stations";
     public static PriceGroup = "pricegroups";
     public static FinancialYear = "financialyears";
+    public static Tax = "taxes";
+    public static Transporter = "transporter";
+    public static ProductReceived = "productreceived";
+    public static Transaction = "transaction";
+    public static Reversal = "reversal";
 }
 
 
@@ -108,6 +113,21 @@ export class Privileges {
     public static FinancialYearUpdate = "FinancialYear.Update";
     public static FinancialYearRead = "FinancialYear.Read";
     public static FinancialYearDelete = "FinancialYear.Delete";
+
+    public static TaxCreate = "Tax.Create";
+    public static TaxUpdate = "Tax.Update";
+    public static TaxRead = "Tax.Read";
+    public static TaxDelete = "Tax.Delete";
+
+    public static TransporterCreate = "Transporter.Create";
+    public static TransporterUpdate = "Transporter.Update";
+    public static TransporterRead = "Transporter.Read";
+    public static TransporterDelete = "Transporter.Delete";
+
+    public static ProductReceivedCreate = "ProductReceived.Create";
+    public static ProductReceivedUpdate = "ProductReceived.Update";
+    public static ProductReceivedRead = "ProductReceived.Read";
+    public static ProductReceivedDelete = "ProductReceived.Delete";
 
     public static Dashboard = "Dashboard";
     public static Report = "Report";

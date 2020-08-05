@@ -3,19 +3,6 @@ import { Router } from '@angular/router';
 import { AppRouteNames } from 'app/shared/config-keys';
 import { findWhere, sortBy } from "underscore";
 
-declare interface SetUpModel {
-  label: string;
-  name: string;
-  route: string;
-}
-
-export const SetUps: SetUpModel[] = [
-  { label: 'Account Group', name: "accountgroup", route: `/${AppRouteNames.Settings}/${AppRouteNames.AccountGroup}` },
-  { label: 'Account', name: "account", route: `/${AppRouteNames.Settings}/${AppRouteNames.Account}` },
-  { label: 'Fuel Product', name: "fuelproduct", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelProduct}` },
-  { label: 'Region', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` },
-  { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` }
-]
 
 
 @Component({
@@ -41,3 +28,21 @@ export class SettingPageComponent implements OnInit {
   }
 
 }
+
+
+declare interface SetUpModel {
+  label: string;
+  name: string;
+  route: string;
+}
+
+export const SetUps: SetUpModel[] = [
+  { label: 'Account Group', name: "accountgroup", route: `/${AppRouteNames.Settings}/${AppRouteNames.AccountGroup}` },
+  { label: 'Account', name: "account", route: `/${AppRouteNames.Settings}/${AppRouteNames.Account}` },
+  { label: 'Fuel Product', name: "fuelproduct", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelProduct}` },
+  { label: 'Region', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` },
+  { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` },
+  { label: 'Tax', name: "tax", route: `/${AppRouteNames.Settings}/${AppRouteNames.Tax}` },
+  { label: 'Transporter', name: "transporter", route: `/${AppRouteNames.Settings}/${AppRouteNames.Transporter}` }
+]
+

@@ -71,19 +71,15 @@ export class StationFormComponent implements OnInit {
             fuelProductId: stock.fuelProductId,
             fuelProductName: stock.fuelProductName,
             reorderLevel: stock.reorderLevel,
-            quantity: 0,
-            stationId: null,
-            stationName: null
+            initialStock: stock.initialStock,
           });
 
           this.fuelStocks.push(this.fb.group({
             id: stock.id,
             fuelProductId: stock.fuelProductId,
             fuelProductName: stock.fuelProductName,
+            initialStock: stock.initialStock,
             reorderLevel: stock.reorderLevel,
-            quantity: 0,
-            stationId: null,
-            stationName: null
           }));
         }
         );
@@ -113,10 +109,8 @@ export class StationFormComponent implements OnInit {
             id: 0,
             fuelProductId: q.fuelProductId,
             fuelProductName: q.fuelProductName,
-            quantity: 0,
+            initialStock: 0,
             reorderLevel: 0,
-            stationId: null,
-            stationName: null
           }));
       this.clearFuelSelect();
       this.products = items;
@@ -171,12 +165,9 @@ export class StationFormComponent implements OnInit {
       id: 0,
       fuelProductId: null,
       fuelProductName: '',
-      quantity: 0,
+      initialStock: 0,
       reorderLevel: 0,
-      stationId: null,
-      stationName: null
     });
-
     this.fuelStocks.push(stock);
   }
 
@@ -199,7 +190,6 @@ export class StationFormComponent implements OnInit {
   }
 
   async save(station: Station) {
-    console.log(station)
     var msg = this.validate(station.fuelStocks);
     if (msg != "") { Toast.error(msg); return; }
     try {
@@ -251,5 +241,3 @@ export class StationFormComponent implements OnInit {
 
 }
 
-
-// TODO: in update, affect stock products on price group change

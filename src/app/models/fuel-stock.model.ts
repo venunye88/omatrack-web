@@ -5,5 +5,6 @@ export interface FuelStock {
     fuelProductId: number
     fuelProductName: string
     reorderLevel: number
-    quantity: number
+    initialStock: number
+    currentStock: number
 }

@@ -20,13 +20,11 @@ import { isNullOrUndefined } from 'util';
 export class PriceGroupComponent implements OnInit {
   pgForm: FormGroup;
   priceGroups: Observable<PriceGroup[]>;
-  // selectedGroup = <PriceGroup>{ priceLists: [] };
   selectedGroup: PriceGroup;
   fuelProducts: Observable<FuelProduct[]>;
   showForm: boolean;
   selectedGroupId: any;
   selectedFuel: FuelProduct;
-  // maxDate = moment(new Date()).format('YYYY-MM-DD')
   maxDate = WebUtils.getIsoDateString(new Date())
 
   @BlockUI('loading') loading: NgBlockUI;

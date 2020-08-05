@@ -1,0 +1,89 @@
+<div class="custom-panel">
+    <div class="row" *blockUI="'loading'">
+        <div class="col-md-5" *ngIf="showForm">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading"><span class="panel-title">
+                        <i class="fas fa-edit mr-2"></i>Enter Tax Detail </span> <span class="pull-right mr-2 "
+                        (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
+                    </span></div>
+                <div class="panel-body">
+                    <form [formGroup]="taxForm" (ngSubmit)="save(taxForm.value)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                [validate-form-control]="taxForm.controls.name" error-message="Name is required"
+                                required>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-6">
+                                <label for="rate">Rate</label>
+                                <input type="number" name="rate" class="form-control p-2" style="height: 35px;"
+                                    placeholder="Enter rate" formControlName="rate"
+                                    [validate-form-control]="taxForm.controls.rate" error-message="Rate is required"
+                                    required>
+                            </div>
+                            <div class="col-6">
+                                <label for="date">Effective Date</label>
+                                <input type="date" name="date" class="form-control p-2" style="height: 35px;"
+                                    [max]="maxDate" formControlName="effectiveDate"
+                                    [validate-form-control]="taxForm.controls.effectiveDate"
+                                    error-message="Effective date is required" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 mt-4">
+                                <div class="form-group">
+                                    <label for="notes">Notes</label>
+                                    <textarea class="form-control p-2" id="notes" rows="3"
+                                        formControlName="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" authorize="Tax.Create"
+                            [disabled]="!taxForm.valid">Save
+                            Changes</button>
+                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                        <button type="button" class="btn btn-danger pull-right" (click)="delete(taxForm.value)"
+                            *ngIf="taxForm.value.id">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <i class="fas fa-coins mr-2"></i>Taxes</span>
+                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Tax</button>
+                </div>
+                <div class="panel-body p-0">
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="num_col_1">#</th>
+                                    <th>Name</th>
+                                    <th>Rate</th>
+                                    <th>Effective Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tax of taxes | async; let i = index;" class="pointer"
+                                    (click)="openForm(tax)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{tax.name}}</td>
+                                    <td>{{tax.rate}}</td>
+                                    <td>{{tax.effectiveDate | date:'fullDate'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

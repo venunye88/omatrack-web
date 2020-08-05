@@ -25,6 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
                     case 201: //created
                         Toast.success("Data saved successfully.");
                         break;
+                    case 209: //Transaction Reversed
+                        Toast.success("Reversed Transaction successful.");
+                        break;
                     case 200: //success
                         switch (req.method) {
                             case 'PUT':

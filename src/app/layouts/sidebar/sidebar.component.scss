@@ -37,33 +37,13 @@ i.caret {
     text-align: center;
 }
 
-// a:focus{
-// i.caret{
-//     // color: red !important;
-//     transform: rotate(90deg); 
-//     transition: all 0.2s ease-in-out 0s; 
-// }
-// }
-
-// li a:not(:focus){
-//     i.caret{
-//         transform: rotate(360deg); 
-//         transition: all 0.2s ease-in-out 0s; 
-//     }
-// }
-
-
-// .icon{
-//     // color:blue !important;
-//     // float: left !important;
-// }
-
 
 
 
 li:focus-within{
     a.parent-active{
-    background-color: #1f6b9e !important;
+    // background-color: #1f6b9e !important;
+    background-color: #3c90b8 !important;
     color:#fff !important;
     i{color: #fff !important;}
     // .caret{

@@ -58,6 +58,11 @@ export const routes: Routes = [{
       }
     },
     {
+      path: AppRouteNames.ProductReceived,
+      loadChildren: () => import('./product-received/product-received.module').then(m => m.ProductReceivedModule),
+      data: { title: 'ProductReceived' }
+    },
+    {
       path: AppRouteNames.UserProfile,
       loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
       data: { title: 'Profile' }

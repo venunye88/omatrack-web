@@ -9,10 +9,12 @@ import { SharedModule } from 'app/shared/shared.module';
 import { FuelProductComponent } from './fuel-product/fuel-product.component';
 import { RegionComponent } from './region/region.component';
 import { FinancialYearComponent } from './financial-year/financial-year.component';
+import { TaxComponent } from './tax/tax.component';
+import { TransporterComponent } from './transporter/transporter.component';
 
 
 @NgModule({
-  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent, FinancialYearComponent],
+  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent, FinancialYearComponent, TaxComponent, TransporterComponent],
   imports: [
     SharedModule,
     SettingRoutingModule

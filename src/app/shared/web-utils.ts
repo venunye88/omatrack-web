@@ -23,14 +23,31 @@ export class WebUtils {
         });
     }
 
-
-
     public static getColor() {
         // let colours = ["red", "green", "blue", "violet", "yellow", "navajo"];
         // return `${colours[Math.floor((Math.random() * colours.length))]}`;
         let newColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
         return newColor;
     }
+
+    public static generateAlpha(len: number) {
+        let text = "";
+        const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        for (var i = 0; i < len; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+
+    public static generateNumeric(len: number) {
+        let text = "";
+        const possible = "0123456789";
+        for (var i = 0; i < len; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+
 
 }
 
