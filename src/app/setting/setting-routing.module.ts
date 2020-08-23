@@ -11,6 +11,7 @@ import { FinancialYearComponent } from './financial-year/financial-year.componen
 import { TaxComponent } from './tax/tax.component';
 import { TransporterComponent } from './transporter/transporter.component';
 import { CreditorComponent } from './creditor/creditor.component';
+import { FuelPumpComponent } from './fuel-pump/fuel-pump.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: AppRouteNames.Creditor,
         component: CreditorComponent
+      },
+      {
+        path: AppRouteNames.FuelPump,
+        component: FuelPumpComponent
       },
     ]
   }

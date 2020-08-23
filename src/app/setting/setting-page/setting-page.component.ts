@@ -44,6 +44,7 @@ export const SetUps: SetUpModel[] = [
   { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` },
   { label: 'Tax', name: "tax", route: `/${AppRouteNames.Settings}/${AppRouteNames.Tax}` },
   { label: 'Transporter', name: "transporter", route: `/${AppRouteNames.Settings}/${AppRouteNames.Transporter}` },
-  { label: 'Creditors', name: "creditor", route: `/${AppRouteNames.Settings}/${AppRouteNames.Creditor}` }
+  { label: 'Creditors', name: "creditor", route: `/${AppRouteNames.Settings}/${AppRouteNames.Creditor}` },
+  { label: 'Fuel Pumps', name: "fuelpump", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelPump}` }
 ]
 

@@ -1,7 +1,7 @@
 <div class="custom-panel" id="page-wrapper">
   <div class="container-fluid">
     <div class="row row-stat" *blockUI="'loading'">
-      <div class="col-sm-5" *ngIf="showForm">
+      <div class="col-sm-7" *ngIf="showForm">
         <div class="panel panel-default p-0">
           <div class="panel-heading ">
             <span class="panel-title"><i class="fas fa-edit mr-2"></i> Enter Role Details</span>
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+      <div [ngClass]="showForm ? 'col-md-5' : 'col-md-12'">
         <div class="panel panel-default p-0">
           <div class="panel-heading">
             <span class="panel-title"><i class="fas fa-user-shield mr-2"></i> Roles</span>

@@ -45,6 +45,7 @@ export class AppRouteNames {
     public static Transaction = "transaction";
     public static Reversal = "reversal";
     public static Creditor = "creditor";
+    public static FuelPump = "fuelpump";
 }
 
 
@@ -134,6 +135,11 @@ export class Privileges {
     public static CreditorUpdate = "Creditor.Update";
     public static CreditorRead = "Creditor.Read";
     public static CreditorDelete = "Creditor.Delete";
+
+    public static FuelPumpCreate = "FuelPump.Create";
+    public static FuelPumpUpdate = "FuelPump.Update";
+    public static FuelPumpRead = "FuelPump.Read";
+    public static FuelPumpDelete = "FuelPump.Delete";
 
     public static Dashboard = "Dashboard";
     public static Report = "Report";

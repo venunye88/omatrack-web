@@ -23,8 +23,6 @@ export class CreditorComponent implements OnInit {
   selectedStation: Station;
   creditors: Observable<Creditor[]>;
   showForm: boolean;
-  selectedStationId: any;
-  selectedCreditor: Creditor;
 
   @BlockUI('loading') loading: NgBlockUI;
   @ViewChild('ngStation') public ngSelect: NgSelectComponent;
@@ -87,7 +85,6 @@ export class CreditorComponent implements OnInit {
         id: creditor.id,
         name: creditor.name,
         stationId: creditor.stationId,
-        stationName: creditor.stationName,
         phoneNumber: creditor.phoneNumber,
         address: creditor.address,
         initialBalance: creditor.initialBalance
@@ -114,7 +111,6 @@ export class CreditorComponent implements OnInit {
       id: 0,
       name: '',
       stationId: null,
-      stationName: '',
       phoneNumber: '',
       address: '',
       initialBalance: 0,
