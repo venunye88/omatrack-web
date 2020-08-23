@@ -7,7 +7,7 @@ import { WebUtils } from 'app/shared/web-utils';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ProductReceivedService } from 'app/services/product-received.service';
 import { TransporterService } from 'app/services/transporter.service';
-import { without, where, last, pluck } from "underscore";
+import { without, where, last, shuffle } from "underscore";
 
 import { FuelStockService } from 'app/services/fuel-stock.service';
 import { Transporter } from 'app/models/transporter.model';
@@ -26,8 +26,8 @@ export class ProductReceivedComponent implements OnInit {
   stocks: Promise<FuelStock[]>;
   transporters: Promise<Transporter[]>;
   maxDate = WebUtils.getIsoDateString(new Date());
-  refno = WebUtils.generateNumeric(6);
-  // refno = WebUtils.generateNumeric(3) + new Date().getMilliseconds().toString();
+  // refno = WebUtils.generateNumeric(6);
+  refno = "";
 
   @BlockUI('loading') loading: NgBlockUI;
 
@@ -41,6 +41,15 @@ export class ProductReceivedComponent implements OnInit {
 
   getStocks() {
     this.stocks = this.stockService.fetchStationStocks().toPromise();
+  }
+
+  refGenerator() {
+    var date = new Date().getMilliseconds().toString();
+    if (date.length < 3) {
+      date = date + Math.floor(Math.random() * 10).toString();
+    }
+    var ref = WebUtils.generateNumeric(4) + date;
+    return ref;
   }
 
   getTransporters() {
@@ -115,7 +124,7 @@ export class ProductReceivedComponent implements OnInit {
       this.loading.start(LoadingMessages.Saving)
       let res = await this.productService.bulkTransaction(productReceived);
       if (res) {
-        this.refno = WebUtils.generateNumeric(6);
+        this.refno = this.refGenerator();
         this.productForm.reset();
         this.fuelStocks.controls.splice(1);
         // this.setUpForm();
@@ -128,6 +137,7 @@ export class ProductReceivedComponent implements OnInit {
   }
 
   private setUpForm() {
+    this.refno = this.refGenerator();
     this.productForm = this.fb.group({
       fuelStocks: this.fb.array([])
     });

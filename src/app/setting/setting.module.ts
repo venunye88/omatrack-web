@@ -11,10 +11,11 @@ import { RegionComponent } from './region/region.component';
 import { FinancialYearComponent } from './financial-year/financial-year.component';
 import { TaxComponent } from './tax/tax.component';
 import { TransporterComponent } from './transporter/transporter.component';
+import { CreditorComponent } from './creditor/creditor.component';
 
 
 @NgModule({
-  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent, FinancialYearComponent, TaxComponent, TransporterComponent],
+  declarations: [AccountGroupComponent, AccountComponent, SettingPageComponent, FuelProductComponent, RegionComponent, FinancialYearComponent, TaxComponent, TransporterComponent, CreditorComponent],
   imports: [
     SharedModule,
     SettingRoutingModule

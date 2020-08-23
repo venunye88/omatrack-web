@@ -10,6 +10,7 @@ import { RegionComponent } from './region/region.component';
 import { FinancialYearComponent } from './financial-year/financial-year.component';
 import { TaxComponent } from './tax/tax.component';
 import { TransporterComponent } from './transporter/transporter.component';
+import { CreditorComponent } from './creditor/creditor.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: AppRouteNames.Transporter,
         component: TransporterComponent
+      },
+      {
+        path: AppRouteNames.Creditor,
+        component: CreditorComponent
       },
     ]
   }

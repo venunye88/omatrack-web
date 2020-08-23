@@ -7,12 +7,14 @@
 // // Heroku port
 // app.listen(process.env.PORT || 8080);
 
-var express = require('express');
-var app = express();
-const path = require('path');
-var PORT = process.env.PORT || 5000;
-var app_path = '/dist/omatrac';
+const express = require('express');
 
-app.use('/', express.static(path.join(__dirname, app_path)))
-    .get('*', (req, res) => res.sendFile(path.join(__dirname, app_path, +'/index.html')))
-    .listen(PORT, () => console.log(`Listening on ${PORT}`));
+const app = express();
+
+app.use(express.static('./dist/goodair'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', { root: 'dist/goodair/' }),
+);
+
+app.listen(process.env.PORT || 8080);
