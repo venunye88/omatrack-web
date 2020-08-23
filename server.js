@@ -11,10 +11,10 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.static('./dist/goodair'));
+app.use(express.static('./dist/omatrack'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', { root: 'dist/goodair/' }),
+    res.sendFile('index.html', { root: 'dist/omatrack/' }),
 );
 
 app.listen(process.env.PORT || 8080);
