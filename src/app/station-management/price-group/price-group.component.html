@@ -8,7 +8,7 @@
             </span> <span class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
                 aria-hidden="true"></i></span></div>
           <div class="panel-body">
-            <form [formGroup]="pgForm" (ngSubmit)="save(pgForm.value.fuelStocks)">
+            <form [formGroup]="pgForm" (ngSubmit)="save(pgForm.value)">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" formControlName="name" class="form-control" id="name"

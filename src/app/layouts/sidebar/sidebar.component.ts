@@ -46,7 +46,7 @@ export const DROPDOWNROUTES: MenuInfo[] = [
     privilege: Privileges.Administration,
     subMenus: [
       { title: "Product Received", icon: "fas fa-hand-holding-water", route: "/productreceived/transaction", privilege: Privileges.ProductReceivedRead, subMenus: [] },
-      { title: "Station List", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
+      { title: "Stations", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
       { title: "Price Groups", icon: "fa fa-tags", route: "/stationmgt/pricegroups", privilege: Privileges.PriceGroupRead, subMenus: [] },
     ]
   },

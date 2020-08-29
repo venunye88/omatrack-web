@@ -46,7 +46,7 @@ export class RegionComponent implements OnInit {
       this.loading.start(LoadingMessages.Saving);
       let res = await this.regionService.save(region);
       if (res) {
-        this.closeForm();
+        this.regionForm.reset();
         this.fetchRegions();
       }
     } catch (error) { } finally { this.loading.stop() };

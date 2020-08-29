@@ -4,6 +4,7 @@ import { AppRouteNames } from 'app/shared/config-keys';
 import { ProductReceivedPageComponent } from './product-received-page/product-received-page.component';
 import { ProductReceivedReversalComponent } from './product-received-reversal/product-received-reversal.component';
 import { ProductReceivedComponent } from './product-received/product-received.component';
+import { FuelReceivedComponent } from './fuel-received/fuel-received.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: AppRouteNames.Transaction,
-        component: ProductReceivedComponent
+        component: FuelReceivedComponent
       },
       {
         path: AppRouteNames.Reversal,

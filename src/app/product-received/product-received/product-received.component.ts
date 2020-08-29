@@ -23,7 +23,7 @@ import { LoadingMessages } from 'app/shared/config-keys';
 })
 export class ProductReceivedComponent implements OnInit {
   productForm: FormGroup;
-  stocks: Promise<FuelStock[]>;
+  stocks: Promise<any[]>;
   transporters: Promise<Transporter[]>;
   maxDate = WebUtils.getIsoDateString(new Date());
   // refno = WebUtils.generateNumeric(6);

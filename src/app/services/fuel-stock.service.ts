@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FuelStock } from 'app/models/fuel-stock.model';
+import { FuelStock, StationStock } from 'app/models/fuel-stock.model';
 import { BaseService } from './base-service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
@@ -13,7 +13,7 @@ export class FuelStockService extends BaseService<FuelStock> {
 
 
   fetchStationStocks() {
-    return this.http.get<FuelStock[]>(`${environment.baseApi}/fuelstocks/stationstocks`)
+    return this.http.get<StationStock[]>(`${environment.baseApi}/fuelstocks/stationstocks`)
   }
 
 }

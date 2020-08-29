@@ -4,10 +4,11 @@ import { ProductReceivedPageComponent } from './product-received-page/product-re
 import { SharedModule } from 'app/shared/shared.module';
 import { ProductReceivedComponent } from './product-received/product-received.component';
 import { ProductReceivedReversalComponent } from './product-received-reversal/product-received-reversal.component';
+import { FuelReceivedComponent } from './fuel-received/fuel-received.component';
 
 
 @NgModule({
-  declarations: [ProductReceivedPageComponent, ProductReceivedComponent, ProductReceivedReversalComponent],
+  declarations: [ProductReceivedPageComponent, ProductReceivedComponent, ProductReceivedReversalComponent, FuelReceivedComponent],
   imports: [
     SharedModule,
     ProductReceivedRoutingModule

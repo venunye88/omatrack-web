@@ -96,7 +96,7 @@ export class FuelPumpComponent implements OnInit {
   }
 
   async delete(pump: FuelPump) {
-    let confirm = await MessageBox.confirm("Delete Account Group", `Are you sure you want to delete ${pump.name}?`);
+    let confirm = await MessageBox.confirm("Delete Fuel Pump", `Are you sure you want to delete ${pump.name}?`);
     if (!confirm.value) return;
     try {
       this.loading.start(LoadingMessages.Deleting);

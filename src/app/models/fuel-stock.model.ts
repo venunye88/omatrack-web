@@ -7,4 +7,12 @@ export interface FuelStock {
     reorderLevel: number
     initialStock: number
     currentStock: number
+    unitPrice: number
+}
+
+
+export interface StationStock {
+    id: number,
+    name: string
+    stocks: Array<FuelStock>
 }
