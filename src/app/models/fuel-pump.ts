@@ -1,9 +1,10 @@
-export interface FuelPump {
+export interface Nozzle {
     id: number
     name: string
-    stationId: number
+    outletId: number
     stationName: string
-    fuelProductId: number
-    fuelProductName: string
-    address: string
+    productId: number
+    productName: string
+    initialReading: string
+    // address: string
 }

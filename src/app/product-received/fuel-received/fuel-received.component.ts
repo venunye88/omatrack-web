@@ -7,7 +7,7 @@ import { ProductReceivedService } from 'app/services/product-received.service';
 import { FuelStockService } from 'app/services/fuel-stock.service';
 import { ProductReceived } from 'app/models/product-received.model';
 import { LoadingMessages } from 'app/shared/config-keys';
-import { Station } from 'app/models/station.model';
+import { Outlet } from 'app/models/station.model';
 import { Observable } from 'rxjs';
 import { StationService } from 'app/services/station.service';
 
@@ -25,7 +25,7 @@ export class FuelReceivedComponent implements OnInit {
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private fb: FormBuilder, private productService: ProductReceivedService, private stockService: FuelStockService, private stationService: StationService, private ref: ChangeDetectorRef,) { }
+  constructor(private fb: FormBuilder, private productService: ProductReceivedService, private stockService: FuelStockService, private stationService: StationService, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.setUpForm();

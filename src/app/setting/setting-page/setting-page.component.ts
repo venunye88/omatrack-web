@@ -37,14 +37,16 @@ declare interface SetUpModel {
 }
 
 export const SetUps: SetUpModel[] = [
-  { label: 'Account Group', name: "accountgroup", route: `/${AppRouteNames.Settings}/${AppRouteNames.AccountGroup}` },
-  { label: 'Account', name: "account", route: `/${AppRouteNames.Settings}/${AppRouteNames.Account}` },
-  { label: 'Fuel Product', name: "fuelproduct", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelProduct}` },
-  { label: 'Region', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` },
-  { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` },
-  { label: 'Tax', name: "tax", route: `/${AppRouteNames.Settings}/${AppRouteNames.Tax}` },
-  { label: 'Transporter', name: "transporter", route: `/${AppRouteNames.Settings}/${AppRouteNames.Transporter}` },
+  // { label: 'Account Group', name: "accountgroup", route: `/${AppRouteNames.Settings}/${AppRouteNames.AccountGroup}` },
+  { label: 'Outlets', name: "outlet", route: `/${AppRouteNames.Settings}/${AppRouteNames.Outlet}` },
+  { label: 'Products', name: "product", route: `/${AppRouteNames.Settings}/${AppRouteNames.Product}` },
+  { label: 'Regions', name: "region", route: `/${AppRouteNames.Settings}/${AppRouteNames.Region}` },
+  // { label: 'Financial Year', name: "financialyear", route: `/${AppRouteNames.Settings}/${AppRouteNames.FinancialYear}` },
+  // { label: 'Tax', name: "tax", route: `/${AppRouteNames.Settings}/${AppRouteNames.Tax}` },
+  // { label: 'Transporter', name: "transporter", route: `/${AppRouteNames.Settings}/${AppRouteNames.Transporter}` },
   { label: 'Creditors', name: "creditor", route: `/${AppRouteNames.Settings}/${AppRouteNames.Creditor}` },
-  { label: 'Fuel Pumps', name: "fuelpump", route: `/${AppRouteNames.Settings}/${AppRouteNames.FuelPump}` }
+  { label: 'Nozzles', name: "fuelpump", route: `/${AppRouteNames.Settings}/${AppRouteNames.Nozzle}` },
+  { label: 'Expense Types', name: "expensetype", route: `/${AppRouteNames.Settings}/${AppRouteNames.ExpenseType}` },
+  { label: 'Banks', name: "bank", route: `/${AppRouteNames.Settings}/${AppRouteNames.Bank}` }
 ]
 

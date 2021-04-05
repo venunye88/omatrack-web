@@ -2,13 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { FuelStock } from 'app/models/fuel-stock.model';
-import { Station } from 'app/models/station.model';
+import { Outlet } from 'app/models/station.model';
 import { WebUtils } from 'app/shared/web-utils';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ProductReceivedService } from 'app/services/product-received.service';
 import { TransporterService } from 'app/services/transporter.service';
 import { without, where, last, shuffle } from "underscore";
-
 import { FuelStockService } from 'app/services/fuel-stock.service';
 import { Transporter } from 'app/models/transporter.model';
 import { Toast } from 'app/shared/message-helper';

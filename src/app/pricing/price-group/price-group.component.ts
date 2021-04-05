@@ -6,11 +6,10 @@ import { PriceGroupService } from 'app/services/price-group.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MessageBox, Toast } from 'app/shared/message-helper';
 import { LoadingMessages } from 'app/shared/config-keys';
-import { FuelProductService } from 'app/services/fuel-product.service';
-import { FuelProduct } from 'app/models/fuel-product.model';
 import { findWhere, where, last, pluck } from "underscore";
 import { WebUtils } from 'app/shared/web-utils';
 import { isNullOrUndefined } from 'util';
+import { Product, ProductService } from 'app/services/product.service';
 
 @Component({
   selector: 'app-price-group',
@@ -21,15 +20,15 @@ export class PriceGroupComponent implements OnInit {
   pgForm: FormGroup;
   priceGroups: Observable<PriceGroup[]>;
   selectedGroup: PriceGroup;
-  fuelProducts: Observable<FuelProduct[]>;
+  products: Observable<Product[]>;
   showForm: boolean;
   selectedGroupId: any;
-  selectedFuel: FuelProduct;
+  selectedFuel: Product;
   maxDate = WebUtils.getIsoDateString(new Date())
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private fb: FormBuilder, private pgService: PriceGroupService, private fpService: FuelProductService) { }
+  constructor(private fb: FormBuilder, private pgService: PriceGroupService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.setUpForm();
@@ -42,7 +41,7 @@ export class PriceGroupComponent implements OnInit {
   }
 
   async fetchFuelProuducts() {
-    this.fuelProducts = this.fpService.get();
+    this.products = this.productService.get();
   }
 
   get priceLists() {
@@ -52,7 +51,7 @@ export class PriceGroupComponent implements OnInit {
   onFuelSelected(fuel) {
     if (!fuel) { this.selectedFuel = null; return; }
 
-    const exist = where(this.priceLists.value, { fuelProductId: fuel.id });
+    const exist = where(this.priceLists.value, { productId: fuel.id });
     if (exist.length > 1) {
       this.selectedFuel = fuel;
       Toast.warning(`${fuel.name} already added.`);
@@ -67,7 +66,7 @@ export class PriceGroupComponent implements OnInit {
         return;
       }
       var fuel = <PriceList>last(this.priceLists.value);
-      if (isNullOrUndefined(fuel?.fuelProductId) || fuel?.fuelProductId == 0
+      if (isNullOrUndefined(fuel?.productId) || fuel?.productId == 0
         || isNullOrUndefined(fuel?.unitPrice) || fuel?.unitPrice < 1 || isNullOrUndefined(fuel?.effectiveDate)) {
         Toast.warning(`Ensure fuel is selected, price is set and effective date is selected`);
         return;
@@ -75,9 +74,10 @@ export class PriceGroupComponent implements OnInit {
     }
     const price = this.fb.group({
       id: 0,
-      fuelProductId: null,
+      productId: null,
       unitPrice: '',
       effectiveDate: null,
+      isNew: false
     });
 
     this.priceLists.push(price)
@@ -116,9 +116,10 @@ export class PriceGroupComponent implements OnInit {
         priceGroup.priceLists.forEach(price => {
           this.priceLists.push(this.fb.group({
             id: price.id,
-            fuelProductId: price.fuelProductId,
+            productId: price.productId,
             unitPrice: price.unitPrice,
-            effectiveDate: WebUtils.getIsoDateString(price.effectiveDate)
+            effectiveDate: WebUtils.getIsoDateString(price.effectiveDate),
+            isNew: false
           }));
         });
       }
@@ -133,45 +134,18 @@ export class PriceGroupComponent implements OnInit {
     this.showForm = false;
   }
 
-  // onItemSelect(fuel: any, index: number) {
-  //   if (!fuel) return
-  //   let fuels = this.priceLists.value.map((i: PriceList) => {
-
-  //     return i.fuelProductId || { id: i.id };
-  //   })
-
-  //   console.log(this.priceLists.value)
-  //   const exist = where(this.priceLists.value, { fuelProductId: fuel.id });
-  //   if (exist.length > 1) {
-  //     this.priceLists.controls[index].patchValue({ item: null })
-  //     Toast.warning(`${fuel.name} already added.`);
-  //   }
-  // }
-
-
-  // hasDuplicates(fuel) {
-  //   var fuelArr = pluck(fuel, 'fuelProductId');
-  //   let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-  //   return findDuplicates(fuelArr).length > 0;
-  // }
-
-  // hasSetPrice(prices) {
-  //   console.log(prices)
-  //   var priceArr = where(prices, { unitPrice: 0 || null });
-  //   return priceArr.length > 0;
-  // }
 
   validate(priceList) {
-    var fuelArr = pluck(priceList, 'fuelProductId');
+    var fuelArr = pluck(priceList, 'productId');
     let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
     var hasDuplicate = findDuplicates(fuelArr).length > 0;
 
-    var hasFuel = where(priceList, { fuelProductId: null }).length > 0;
+    var hasFuel = where(priceList, { productId: null }).length > 0;
     var priceArr = where(priceList, { unitPrice: 0 || null }).length > 0;
     var setDate = where(priceList, { effectiveDate: null }).length > 0;
 
     if (hasFuel) { return "Fuel has not been selected for one or more price list"; }
-    if (hasDuplicate) { return "Found duplicate fuel entries"; }
+    if (hasDuplicate) { return "Found duplicate product entries"; }
     if (priceArr) { return "Some prices have not been set"; }
     if (setDate) { return "Some dates have not been selected"; }
     return "";

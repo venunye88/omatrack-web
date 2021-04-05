@@ -1,0 +1,68 @@
+<div class="custom-panel" id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row row-stat" *blockUI="'loading'">
+      <div class="col-md-12">
+        <div class="panel panel-default p-0">
+          <div class="panel-heading">
+            <span class="panel-title"><i class="fas fa-coins mr-2"></i> Daily Transactions</span>
+          </div>
+          <div class="panel-body p-0">
+            <!-- <div class="row">
+                            <div class="col-md-4 col-md-offset-8 m-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" [(ngModel)]="filterText"
+                                        placeholder="filter transaction.....">
+                                </div>
+                            </div>
+                        </div> -->
+
+            <div class="table-responsive-sm">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="num_col_1">#</th>
+                    <th>Ref No.</th>
+                    <th>Outlet</th>
+                    <th>Date/Time</th>
+                    <th>Transactions</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="pointer" *ngFor="let transaction of transactions |async;let i = index"
+                    (click)="detail(transaction.id)" style="font-size:medium;">
+                    <td>{{i+1}}</td>
+                    <td class="cell-detail"><span>{{transaction.referenceNumber}}</span>
+                    <td class="cell-detail"><span>{{transaction.outlet}}</span>
+                      <span class="cell-detail-description">{{transaction.region}}</span>
+                    </td>
+                    <td class="cell-detail"><span>{{transaction.date | date: 'fullDate'}}</span>
+                      <span class="cell-detail-description">{{transaction.date | date: 'shortTime'}}</span>
+                    </td>
+                    <td>
+                      <span class="badge badge-dark mr-2">Daily Sales | {{transaction.pumpSaleCount}}</span>
+                      <span class="badge badge-secondary mr-2">Products Received |
+                        {{transaction.productReceivedCount}}</span>
+                      <span class="badge badge-warning mr-2">Expenses | {{transaction.expenseCount}}</span>
+                      <span class="badge badge-primary mr-2">Credit Sale | {{transaction.creditSaleCount}}</span>
+                      <span class="badge badge-danger mr-2">Credit Payment | {{transaction.creditPaymentCount}}</span>
+                      <span class="badge badge-success mr-2">Daily Banking | {{transaction.bankingCount}}</span>
+                      <span class="badge badge-info mr-2">Stock Operations | {{transaction.stockOperationCount}}</span>
+                    </td>
+                    <td>
+                      <span
+                        [class]="transaction.status=='Pending' ? 'badge badge-danger' : transaction.status=='Correction' ? 'badge badge-warning' : 'badge badge-success' ">{{transaction.status}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

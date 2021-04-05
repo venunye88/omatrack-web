@@ -1,0 +1,19 @@
+
+.table>tbody>tr>td.cell-detail {
+    line-height: 1.42857;
+}
+
+.table tbody tr td.cell-detail span {
+    display: block
+}
+
+.table tbody tr td.cell-detail .cell-detail-description {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    label.badge {
+        padding: 4px;
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+}

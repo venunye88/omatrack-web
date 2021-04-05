@@ -20,6 +20,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { LocationStrategy, HashLocationStrategy, CommonModule, PathLocationStrategy } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
+    // TabsModule.forRoot(),
     AppRoutingModule,
     RouterModule.forRoot(routes, { useHash: false })
   ],

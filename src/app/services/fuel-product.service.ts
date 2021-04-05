@@ -8,5 +8,5 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FuelProductService extends BaseService<FuelProduct> {
 
-  constructor(http: HttpClient) { super(http, "fuelproducts") }
+  constructor(http: HttpClient) { super(http, "products") }
 }

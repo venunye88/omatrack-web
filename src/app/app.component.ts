@@ -18,12 +18,12 @@ export class AppComponent {
   title = 'app works!';
 
   constructor(private titleService: Title, router: Router, activatedRoute: ActivatedRoute) {
-    router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        const title = this.getTitle(router.routerState, router.routerState.root).join(' | ');
-        titleService.setTitle(title);
-      }
-    });
+    // router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     const title = this.getTitle(router.routerState, router.routerState.root).join(' | ');
+    //     titleService.setTitle(title);
+    //   }
+    // });
   }
 
   getTitle(state, parent) {

@@ -41,23 +41,49 @@ export const DROPDOWNROUTES: MenuInfo[] = [
   //     { title: "Stock Transfer", icon: "fas fa-exchange-alt", route: "/stationmgt/pricegroups", privilege: Privileges.PriceGroupRead, subMenus: [] },
   //   ]
   // },
+  // {
+  //   title: "Station Mgt", icon: "fas fa-store-alt", route: "#",
+  //   privilege: Privileges.Administration,
+  //   subMenus: [
+  //     { title: "Outlet Sales", icon: "fas fa-store-alt", route: "/outletsales/transaction", privilege: Privileges.ProductReceivedRead, subMenus: [] },// TODO: CHANGE PREVILIGE TO OUTLET SALE
+  //     { title: "Product Received", icon: "fas fa-hand-holding-water", route: "/productreceived/transaction", privilege: Privileges.ProductReceivedRead, subMenus: [] },
+  //     { title: "Stations", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
+  //     { title: "Price Groups", icon: "fa fa-tags", route: "/stationmgt/pricegroups", privilege: Privileges.PriceGroupRead, subMenus: [] },
+  //   ]
+  // },
   {
-    title: "Station Mgt", icon: "fas fa-store-alt", route: "#",
-    privilege: Privileges.Administration,
-    subMenus: [
-      { title: "Product Received", icon: "fas fa-hand-holding-water", route: "/productreceived/transaction", privilege: Privileges.ProductReceivedRead, subMenus: [] },
-      { title: "Stations", icon: "fa fa-gas-pump", route: "/stationmgt/stations", privilege: Privileges.StationRead, subMenus: [] },
-      { title: "Price Groups", icon: "fa fa-tags", route: "/stationmgt/pricegroups", privilege: Privileges.PriceGroupRead, subMenus: [] },
-    ]
+    title: "Transaction", icon: "fas fa-coins", route: "/transactions",
+    privilege: Privileges.TransactionRead,
+    subMenus: []
   },
   {
-    title: "Settings", icon: "fas fa-cogs", route: "/settings",
-    privilege: Privileges.Setting,
+    title: "Price Group", icon: "fas fa-tags", route: "/pricegroups",
+    privilege: Privileges.PriceGroupRead,
     subMenus: []
+  },
+  {
+    title: "Manage Stock", icon: "fas fa-cubes", route: "#",
+    privilege: Privileges.Administration,
+    subMenus: [
+      {
+        title: "Stock List", icon: "fas fa-eye", route: "/stock-mgt/stocks", privilege: Privileges.StockRead, subMenus: []
+      },
+      {
+        title: "Stock Addition", icon: "fas fa-layer-group", route: "/stock-mgt/stock-add", privilege: Privileges.StockCreate, subMenus: []
+      },
+      {
+        title: "Stock Adjustment", icon: "fas fa-wrench", route: "/stock-mgt/stock-adjustment", privilege: Privileges.StockUpdate, subMenus: []
+      }
+    ]
   },
   {
     title: "Reports", icon: "fas fa-chart-bar", route: "/settings",
     privilege: Privileges.Report,
+    subMenus: []
+  },
+  {
+    title: "Settings", icon: "fas fa-cogs", route: "/settings",
+    privilege: Privileges.Setting,
     subMenus: []
   },
   {
@@ -69,11 +95,11 @@ export const DROPDOWNROUTES: MenuInfo[] = [
     ]
   },
 
-  {
-    title: "Form", icon: "fa fa-bars", route: "#", privilege: Privileges.Administration, subMenus: [
-      { title: "Form Child 1", icon: "fa fa-home", route: "/forms", privilege: Privileges.Administration, subMenus: [] },
-      { title: "Form Child 2", icon: "fa fa-home", route: "/ui-elements", privilege: Privileges.Administration, subMenus: [] }
-    ]
-  },
-  { title: "UI Elements", icon: "fa fa-edit", route: "/ui-elements", privilege: Privileges.Administration, subMenus: [] },
+  // {
+  //   title: "Form", icon: "fa fa-bars", route: "#", privilege: Privileges.Administration, subMenus: [
+  //     { title: "Form Child 1", icon: "fa fa-home", route: "/forms", privilege: Privileges.Administration, subMenus: [] },
+  //     { title: "Form Child 2", icon: "fa fa-home", route: "/ui-elements", privilege: Privileges.Administration, subMenus: [] }
+  //   ]
+  // },
+  // { title: "UI Elements", icon: "fa fa-edit", route: "/ui-elements", privilege: Privileges.Administration, subMenus: [] },
 ];

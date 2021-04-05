@@ -70,7 +70,8 @@ ul#side-menu a {
     // border-bottom: 1px solid #ffffff;
     border-top: 1px solid #5d677029;
     color: #5c6270;
-    background: #f2f2f2;
+    // background: #f2f2f2;
+
 }
 ul#side-menu a i {
     display: inline-block;
@@ -112,13 +113,15 @@ ul#side-menu a.active i, ul#side-menu a:hover i  {
 ul#side-menu a.active {
     // background: #ff6384;
     // background:#1f6b9e;
-    background:#3c90b8;
+    // background:#3c90b8;
+    background:#60b83c;
     color: #fff;
 }
 ul#side-menu a:hover{
     color: #fff;
     // background-color: #1f6b9e;
-    background:#3c90b8;
+    // background:#3c90b8;
+    background:#60b83c;
     text-decoration: none;
 }
 ul#side-menu li.user-pro a {
@@ -1107,7 +1110,8 @@ router-outlet {
 
 .custom-panel{
   .panel-default > .panel-heading{
-    background-color: #1f6b9e;
+    // background-color: #1f6b9e;
+    background-color: #02203c;
     color:#fff;
     font-size: 20px;
     font-weight: 300;
@@ -1196,4 +1200,23 @@ button:disabled {
 
 .pull-right{
   float:right;
+}
+
+.bb{
+  border-bottom: 1px solid #bab0b0;
+}
+
+.c-height{
+  height: 35px;
+}
+
+
+.s-tab{
+  li{
+    margin-right:10%;
+  }
+}
+
+.num_col_1 {
+  width: 40px;
 }

@@ -4,7 +4,7 @@ import { Privileges, AppRouteNames } from 'app/shared/config-keys';
 import { UserComponent } from 'app/admin/user/user.component';
 import { RoleComponent } from 'app/admin/role/role.component';
 import { StationsComponent } from './stations/stations.component';
-import { PriceGroupComponent } from './price-group/price-group.component';
+import { PriceGroupComponent } from '../pricing/price-group/price-group.component';
 import { StationFormComponent } from './station-form/station-form.component';
 
 

@@ -5,8 +5,8 @@ export interface PriceGroup extends LookUp {
 }
 
 export interface PriceList extends HasId {
-    fuelProductId: number
-    fuelProductName: string
+    productId: number
+    productName: string
     unitPrice: number
     effectiveDate: Date
 }

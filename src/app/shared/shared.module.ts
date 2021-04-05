@@ -14,6 +14,8 @@ import { FilterModule } from 'app/filters/filter.module';
 import { AuthorizeDirective } from 'app/directives/authorize.directive';
 import { UnauthorizedPageComponent } from './unauthorized-page.component';
 import { ValidateFormDirective } from 'app/directives/validate-form.directive';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgbTooltipModule, NgbModalModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { ValidateFormDirective } from 'app/directives/validate-form.directive';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgbTooltipModule,
+    NgbModalModule,
+    NgbNavModule,
     FilterModule,
     BlockUIModule.forRoot({ template: LoadingTemplate })
   ],
@@ -38,6 +43,9 @@ import { ValidateFormDirective } from 'app/directives/validate-form.directive';
     ValidateFormDirective,
     ValidateFormControlDirective,
     NgSelectModule,
+    NgbTooltipModule,
+    NgbModalModule,
+    NgbNavModule,
     BlockUIModule,
     FilterModule,
     FileReaderDirective,

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StationService } from 'app/services/station.service';
 import { Observable, of } from 'rxjs';
-import { Station } from 'app/models/station.model';
+import { Outlet } from 'app/models/station.model';
 import { LoadingMessages, AppRouteNames } from 'app/shared/config-keys';
 import { MessageBox } from 'app/shared/message-helper';
 import { Region } from 'app/models/region.model';
@@ -23,7 +23,7 @@ export class StationsComponent implements OnInit {
   filterText: string = "";
   showForm: boolean;
   stationForm: FormGroup;
-  stations: Observable<Station[]>;
+  stations: Observable<Outlet[]>;
   regions: Observable<Region[]>;
   priceGroups: Observable<PriceGroupLookUp[]>;
 
@@ -63,7 +63,7 @@ export class StationsComponent implements OnInit {
   //   this.stations = this.stationService.get();
   // }
 
-  openForm(station?: Station) {
+  openForm(station?: Outlet) {
     // this.stationForm.reset();
     // this.showForm = true
     // if (station != null) { this.stationForm.patchValue(station); }
@@ -88,7 +88,7 @@ export class StationsComponent implements OnInit {
     } catch (error) { this.loading.stop(); }
   }
 
-  async save(station: Station) {
+  async save(station: Outlet) {
     try {
       this.loading.start(LoadingMessages.Saving);
       let res = await this.stationService.save(station);
@@ -99,7 +99,7 @@ export class StationsComponent implements OnInit {
     } catch (error) { } finally { this.loading.stop(); }
   }
 
-  async delete(station: Station) {
+  async delete(station: Outlet) {
     let confirm = await MessageBox.confirm("Delete Station", `Are you sure you want to delete ${station.name}?`);
     if (!confirm.value) return;
     try {

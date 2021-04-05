@@ -1,0 +1,60 @@
+<div class="custom-panel" id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row row-stat">
+            <div class="col-md-4 offset-md-4">
+                <div class="panel panel-default p-0 mb-0">
+                    <div class="panel-heading">
+                        <span class="panel-title">
+                            <i class="fas fa-wrench mr-2"></i> Stock Adjustment
+                        </span>
+                    </div>
+                    <div class="panel-body" *blockUI="'loading'">
+                        <form [formGroup]="stockForm" (ngSubmit)="update(stockForm.value)">
+                            <div class="form-group">
+                                <label class="form-label">Outlet</label>
+                                <ng-select placeholder="Select Outlet" [items]="outlets | async" bindLabel="name"
+                                    bindValue="id" formControlName="outletId" #ngOutlet
+                                    (change)="onSelectedOutlet($event)" required>
+                                    <ng-template ng-option-tmp let-item="item" ng-loadingspinner-tmp>
+                                        {{item.name}} <br />
+                                        <small>{{item.region}}</small>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product</label>
+                                <ng-select placeholder="Select Product" [items]="stocks | async" bindLabel="productName"
+                                    bindValue="productId" formControlName="productId" #ngProduct
+                                    (change)="onSelectedProduct($event)" required>
+                                </ng-select>
+                            </div>
+                            <div class="form-group">
+                                <label for="initStock">Initial Stock</label>
+                                <input type="number" formControlName="initialStock" class="form-control"
+                                    id="initialStock" [validate-form-control]="stockForm.controls.initialStock"
+                                    error-message="Initial stock is required" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="currentStock">Current Stock</label>
+                                <input type="number" formControlName="currentStock" class="form-control"
+                                    id="currentStock" [validate-form-control]="stockForm.controls.currentStock"
+                                    error-message="Current stock is required" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reorderLevel">Reorder Level</label>
+                                <input type="number" formControlName="reorderLevel" class="form-control" id="name"
+                                    [validate-form-control]="stockForm.controls.reoderLevel"
+                                    error-message="Reorder level is required" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-success" authorize="Stock.Update"
+                                [disabled]="!stockForm.valid">Adjust
+                                Stock</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

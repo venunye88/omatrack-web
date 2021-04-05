@@ -9,6 +9,7 @@
 
         <li *ngFor="let menu of menuItems; let i=index" id="sm{{i}}">
             <a [routerLink]="[menu.route]" class="parent-active" [authorize]="menu.privilege" appNavDropdownToggle>
+                 
                 <i class="icon {{menu.icon}} mr-2"></i>
                 <span class="hide-menu">{{menu.title}}</span>
                 <i *ngIf="menu.subMenus.length>0" class="fa fa-caret-right caret-right">
@@ -17,6 +18,7 @@
             <ul *ngIf="menu.subMenus" class="nav-dropdown-items close">
                 <li class="nav-item" *ngFor="let sm of menu.subMenus">
                     <a class="nav-link" [routerLink]="[sm.route]" class="child-active" [authorize]="sm.privilege">
+                        
                         <i [ngClass]="sm.icon"></i> {{sm.title}}</a>
                 </li>
             </ul>

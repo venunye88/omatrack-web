@@ -29,6 +29,8 @@
 
 .sidebar{
     overflow-y: auto;
+    background-image: url("/assets/images/oil-well-il.jpg");
+    background-position: center;
 }
 
 i.caret {
@@ -43,7 +45,8 @@ i.caret {
 li:focus-within{
     a.parent-active{
     // background-color: #1f6b9e !important;
-    background-color: #3c90b8 !important;
+    // background-color: #3c90b8 !important;
+    background-color: #60b83c !important;
     color:#fff !important;
     i{color: #fff !important;}
     // .caret{

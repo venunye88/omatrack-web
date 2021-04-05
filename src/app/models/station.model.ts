@@ -1,12 +1,12 @@
 import { LookUp } from 'app/shared/shared.model';
 import { FuelStock } from './fuel-stock.model';
 
-export interface Station extends LookUp {
+export interface Outlet extends LookUp {
     address: string
     phoneNumber: string
-    location: string
-    longitude?: number
-    latitude?: number
+    // location: string
+    // longitude?: number
+    // latitude?: number
     regionId: number
     priceGroupId: number
     fuelStocks: Array<FuelStock>

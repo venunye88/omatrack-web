@@ -7,9 +7,9 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { AccountService } from 'app/services/account.service';
 import { LoadingMessages } from 'app/shared/config-keys';
 import { MessageBox } from 'app/shared/message-helper';
-import { Station } from 'app/models/station.model';
 import { StationService } from 'app/services/station.service';
 import { AccountGroupService } from 'app/services/account-group.service';
+import { Outlet, OutletService } from 'app/services/outlet.service';
 
 @Component({
   selector: 'app-account',
@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit {
   filter = { name: '', stationId: 0, accountGroupId: 0 }
   pageSize = 15;
   accounts: Observable<Account[]>;
-  stations: Observable<Station[]>;
+  outlets: Observable<Outlet[]>;
   accountGroups: Observable<AccountGroup[]>;
   showForm: boolean;
   filterText: string = "";
@@ -28,18 +28,18 @@ export class AccountComponent implements OnInit {
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private accountService: AccountService, private fb: FormBuilder, private stationService: StationService, private agService: AccountGroupService) { }
+  constructor(private accountService: AccountService, private fb: FormBuilder, private outletService: OutletService, private agService: AccountGroupService) { }
 
   ngOnInit(): void {
     this.setUpForm();
     // this.fetchAccounts();
     this.fetchRecords({});
-    this.fetchStations();
+    this.fetchOutlets();
     this.fetchAccountGroups();
   }
 
-  async fetchStations() {
-    this.stations = this.stationService.get();
+  async fetchOutlets() {
+    this.outlets = this.outletService.get();
   }
 
   async fetchAccountGroups() {

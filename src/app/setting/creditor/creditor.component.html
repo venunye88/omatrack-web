@@ -1,96 +1,95 @@
 <div class="custom-panel">
-    <div class="row" *blockUI="'loading'">
-        <div class="col-md-5" *ngIf="showForm">
-            <div class="panel panel-default p-0 m-0">
-                <div class="panel-heading"><span class="panel-title">
-                        <i class="fa fas-edit mr-2"></i>Enter Creditor Detail </span> <span
-                        class="pull-right mr-2 " (click)="closeForm()"> <i class="fa fa-window-close"
-                            aria-hidden="true"></i>
-                    </span></div>
-                <div class="panel-body">
-                    <form [formGroup]="creditorForm" (ngSubmit)="save(creditorForm.value)">
-                        <div class="form-group">
-                            <label for="station">Station</label>
-                            <ng-select [items]="stations |async" bindLabel="name" bindValue="id" formControlName="stationId" placeholder="Select Station" 
-                            [validate-form-control]="creditorForm.controls.stationId" error-message="Station is required"
-                            required>
-                          </ng-select>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" formControlName="name" class="form-control" id="name"
-                              [validate-form-control]="creditorForm.controls.name" error-message="Name is required" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
-                            <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
-                          </div>
-                        
-                          <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="ib">Initial Balance</label>
-                            <input type="number" formControlName="initialBalance"
-                                                class="form-control" min="0" value="0">
-                          </div>
-                          <button type="submit" class="btn btn-success mr-2" authorize="Creditor.Create"
-                          [disabled]="!creditorForm.valid">Save Changes</button>
-                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
-                        <!-- <button type="button" class="btn btn-danger pull-right" (click)="delete(creditorForm.value)"
-                          *ngIf="creditorForm.value.id" authorize="Creditor.Delete">Delete</button> -->
-                       
-                    </form>
-                </div>
+  <div class="row" *blockUI="'loading'">
+    <div class="col-md-5" *ngIf="showForm">
+      <div class="panel panel-default p-0 m-0">
+        <div class="panel-heading"><span class="panel-title">
+            <i class="fas fa-edit mr-2"></i>Creditor Detail </span> <span class="pull-right mr-2 "
+            (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
+          </span></div>
+        <div class="panel-body">
+          <form [formGroup]="creditorForm" (ngSubmit)="save(creditorForm.value)">
+            <div class="form-group">
+              <label for="outlet">Outlet</label>
+              <ng-select [items]="outlets |async" bindLabel="name" bindValue="id" formControlName="outletId"
+                placeholder="Select Outlet" [validate-form-control]="creditorForm.controls.outletId"
+                error-message="Outlet is required" required>
+              </ng-select>
             </div>
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" formControlName="name" class="form-control" id="name"
+                [validate-form-control]="creditorForm.controls.name" error-message="Name is required" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="ib">Initial Balance</label>
+              <input type="number" formControlName="initialBalance" class="form-control" min="0" value="0">
+            </div>
+            <button type="submit" class="btn btn-success mr-2" authorize="Creditor.Create"
+              [disabled]="!creditorForm.valid">Save Changes</button>
+            <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+            <!-- <button type="button" class="btn btn-danger pull-right" (click)="delete(creditorForm.value)"
+                          *ngIf="creditorForm.value.id" authorize="Creditor.Delete">Delete</button> -->
+
+          </form>
         </div>
+      </div>
+    </div>
 
-        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
-            <div class="panel panel-default p-0 m-0">
-                <div class="panel-heading">
-                    <span class="panel-title">
-                        <i class="fas fa-user mr-2"></i>Creditors</span>
-                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
-                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Creditor</button>
-                </div>
-                <div class="panel-body p-0">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-8 m-3">
-                          <ng-select [items]="stations |async" bindLabel="name" bindValue="id"
-                            (change)="loadCreditors($event)" placeholder="Select Station" #ngStation>
-                          </ng-select>
-                        </div>
-                      </div>
-
-                      <div class="table-responsive-sm">
-                        <table class="table table-hover mb-0">
-                          <thead>
-                            <tr>
-                              <th class="num_col_1">#</th>
-                              <th>Name</th>
-                              <th>Phone Number</th>
-                              <th>Initial Balance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let creditor of creditors | async;let i = index" class="pointer" (click)="openForm(creditor)">
-                              <td>{{i+1}}</td>
-                              <td>{{creditor.name}}</td>
-                              <td>{{creditor.phoneNumber}}</td>
-                              <td>{{creditor.initialBalance}}</td>
-                            </tr>
-                          </tbody> 
-                        </table>
-                      </div>
-                    </div>
-                </div>
-                          <button class="btn btn-sm btn-primary light-bd mt-2" (click)="loadMore(filter)">Load more
-                            ...</button>
-
+    <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+      <div class="panel panel-default p-0 m-0">
+        <div class="panel-heading">
+          <span class="panel-title">
+            <i class="fas fa-user mr-2"></i>Creditors</span>
+          <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block (click)="openForm()"><i
+              class="fa fa-edit" aria-hidden="true"></i> New Creditor</button>
         </div>
+        <div class="panel-body p-0">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-8 m-3">
+              <ng-select [items]="outlets |async" bindLabel="name" bindValue="id" (change)="fetchRecords($event?.id)"
+                placeholder="Select Outlet" #ngStation>
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="table-responsive-sm">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th class="num_col_1">#</th>
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Initial Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let creditor of creditors | async;let i = index" class="pointer"
+                  (click)="openForm(creditor)">
+                  <td>{{i+1}}</td>
+                  <td>{{creditor.name}}</td>
+                  <td>{{creditor.phoneNumber}}</td>
+                  <td>{{creditor.initialBalance}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- <button class="btn btn-sm btn-primary light-bd mt-2 pull-right" (click)="loadMore(filter)">Load more
+        ...</button> -->
 
     </div>
+
+  </div>
 </div>

@@ -37,7 +37,7 @@ export class BaseService<T> {
     return this.http.delete<boolean>(`${environment.baseApi}/${this.model}/${id}`).toPromise()
   }
 
-  private getQueryString(filter: object) {
+  protected getQueryString(filter: object) {
     let queryString = Object.keys(filter).map((key) => {
       return encodeURIComponent(key) + '=' + encodeURIComponent(filter[key])
     }).join('&');

@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { Station } from 'app/models/station.model';
-import { Creditor } from 'app/models/creditor.model';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { CreditorService } from 'app/services/creditor.service';
-import { StationService } from 'app/services/station.service';
+import { Creditor, CreditorService } from 'app/services/creditor.service';
 import { isNullOrUndefined } from 'util';
 import { LoadingMessages } from 'app/shared/config-keys';
 import { NgSelectComponent } from '@ng-select/ng-select';
+import { Outlet, OutletService } from 'app/services/outlet.service';
 
 @Component({
   selector: 'app-creditor',
@@ -16,55 +14,66 @@ import { NgSelectComponent } from '@ng-select/ng-select';
   styleUrls: ['./creditor.component.scss']
 })
 export class CreditorComponent implements OnInit {
-  filter = { name: '', stationId: 0 };
+  filter = { name: '', outletId: 0 };
   pageSize = 15;
   creditorForm: FormGroup;
-  stations: Observable<Station[]>;
-  selectedStation: Station;
+  outlets: Observable<Outlet[]>;
+  selectedoutlet: Outlet;
   creditors: Observable<Creditor[]>;
   showForm: boolean;
 
   @BlockUI('loading') loading: NgBlockUI;
-  @ViewChild('ngStation') public ngSelect: NgSelectComponent;
+  @ViewChild('ngoutlet') public ngSelect: NgSelectComponent;
 
-  constructor(private fb: FormBuilder, private creditorService: CreditorService, private stationService: StationService) { }
+  constructor(private fb: FormBuilder, private creditorService: CreditorService, private outletService: OutletService) { }
 
   ngOnInit(): void {
-    this.fetchStations();
     this.setUpForm();
+    this.fetchOutlets();
+    // this.fetchRecords({});
   }
 
-  async fetchRecords(filter: any) {
+  // async fetchRecords(filter: any) {
+  //   try {
+  //     this.loading.start()
+  //     // filter.locationId = this.authService.currentUser.currentLocation.id
+  //     filter._page = 1;
+  //     filter._size = this.pageSize;
+  //     let res = await this.creditorService.query(filter)
+  //     this.loading.stop()
+  //     if (res) { this.creditors = of(res); }
+  //   } catch (error) { this.loading.stop(); }
+  // }
+
+  async fetchRecords(outletId: number) {
     try {
       this.loading.start()
-      // filter.locationId = this.authService.currentUser.currentLocation.id
-      filter._page = 1;
-      filter._size = this.pageSize;
-      let res = await this.creditorService.query(filter)
+      let res = await this.creditorService.getByOutlet(outletId)
       this.loading.stop()
-      if (res) { this.creditors = of(res); }
+      if (res) { this.creditors = res; }
     } catch (error) { this.loading.stop(); }
   }
 
-  async fetchStations() {
-    this.stations = this.stationService.lookup();
+
+  async fetchOutlets() {
+    this.outlets = this.outletService.lookup();
   }
 
-  loadCreditors(creditor: Creditor) {
-    if (!isNullOrUndefined(creditor)) {
-      this.fetchRecords({ name: '', id: creditor.id })
+  // loadCreditors(creditor: Creditor) {
+  //   if (!isNullOrUndefined(creditor)) {
+  //     this.fetchRecords({ name: '', id: creditor.id });
 
-    } else {
-      this.creditors = of([]);
-      this.closeForm();
-    }
-  }
+  //   } else {
+  //     this.creditors = of([]);
+  //     this.closeForm();
+  //   }
+  // }
 
   async loadMore() {
     if (!this.ngSelect.hasValue) return;
-    let stationId = (<any>this.ngSelect.selectedValues[0]).id;
+    let outletId = (<any>this.ngSelect.selectedValues[0]).id;
     try {
-      let filter = <any>{ name: '', stationId: stationId };
+      let filter = <any>{ name: '', outletId: outletId };
       this.loading.start()
       let currentRecords = (this.creditors) ? await this.creditors.toPromise() : []
       filter._page = Math.ceil(currentRecords.length / this.pageSize) + 1;
@@ -84,7 +93,7 @@ export class CreditorComponent implements OnInit {
       this.creditorForm.patchValue({
         id: creditor.id,
         name: creditor.name,
-        stationId: creditor.stationId,
+        outletId: creditor.outletId,
         phoneNumber: creditor.phoneNumber,
         address: creditor.address,
         initialBalance: creditor.initialBalance
@@ -110,7 +119,7 @@ export class CreditorComponent implements OnInit {
     this.creditorForm = this.fb.group({
       id: 0,
       name: '',
-      stationId: null,
+      outletId: null,
       phoneNumber: '',
       address: '',
       initialBalance: 0,

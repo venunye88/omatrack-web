@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Station } from 'app/models/station.model';
+import { Outlet } from 'app/models/station.model';
 import { Region } from 'app/models/region.model';
 import { PriceGroupLookUp, PriceGroup, PriceList } from 'app/models/price-group.model';
 import { StationService } from 'app/services/station.service';
@@ -24,7 +24,7 @@ import { Route } from '@angular/compiler/src/core';
 export class StationFormComponent implements OnInit {
   stationForm: FormGroup;
   // stations: Observable<Station[]>;
-  station: Station;
+  outlet: Outlet;
   regions: Observable<Region[]>;
   priceGroups: Observable<PriceGroup[]>;
   selectedGroupId: any;
@@ -47,25 +47,25 @@ export class StationFormComponent implements OnInit {
   async getStation(id: number) {
     try {
       this.loading.start();
-      this.station = await this.stationService.find(id);
+      this.outlet = await this.stationService.find(id);
       this.stationForm.patchValue({
-        id: this.station.id,
-        name: this.station.name,
-        phoneNumber: this.station.phoneNumber,
-        priceGroupId: this.station.priceGroupId,
-        regionId: this.station.regionId,
-        location: this.station.location,
-        latitude: this.station.latitude,
-        longitude: this.station.longitude,
-        address: this.station.address
+        id: this.outlet.id,
+        name: this.outlet.name,
+        phoneNumber: this.outlet.phoneNumber,
+        priceGroupId: this.outlet.priceGroupId,
+        regionId: this.outlet.regionId,
+        // location: this.outlet.location,
+        // latitude: this.outlet.latitude,
+        // longitude: this.outlet.longitude,
+        address: this.outlet.address
       });
 
       this.fuelStocks.controls.splice(0);
 
       var items = []
-      if (this.station.fuelStocks) {
+      if (this.outlet.fuelStocks) {
         // for product
-        this.station.fuelStocks.forEach(stock => {
+        this.outlet.fuelStocks.forEach(stock => {
           items.push({
             id: stock.id,
             fuelProductId: stock.fuelProductId,
@@ -107,8 +107,8 @@ export class StationFormComponent implements OnInit {
         .forEach(q =>
           items.push({
             id: 0,
-            fuelProductId: q.fuelProductId,
-            fuelProductName: q.fuelProductName,
+            productId: q.productId,
+            productName: q.productName,
             initialStock: 0,
             reorderLevel: 0,
           }));
@@ -189,7 +189,7 @@ export class StationFormComponent implements OnInit {
     return "";
   }
 
-  async save(station: Station) {
+  async save(station: Outlet) {
     var msg = this.validate(station.fuelStocks);
     if (msg != "") { Toast.error(msg); return; }
     try {
@@ -202,12 +202,12 @@ export class StationFormComponent implements OnInit {
   }
 
 
-  async delete(station: Station) {
-    let confirm = await MessageBox.confirm("Delete Station", `Are you sure you want to delete ${station.name}?`);
+  async delete(outlet: Outlet) {
+    let confirm = await MessageBox.confirm("Delete Station", `Are you sure you want to delete ${outlet.name}?`);
     if (!confirm.value) return;
     try {
       this.loading.start(LoadingMessages.Deleting);
-      let res = await this.stationService.delete(station.id);
+      let res = await this.stationService.delete(outlet.id);
       if (res) {
         this.closeForm();
       }

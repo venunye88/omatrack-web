@@ -18,7 +18,7 @@ export const routes: Routes = [{
   component: AdminLayoutComponent,
   canActivate: [RouteGuard],
   data: {
-    title: 'Omatrack'
+    title: 'Fuel Monitor'
   },
   children: [
     {
@@ -42,6 +42,29 @@ export const routes: Routes = [{
       }
     },
     {
+      path: AppRouteNames.PriceGroup,
+      loadChildren: () => import('./pricing/pricing.module').then(m => m.PricingModule),
+      data: {
+        title: 'Pricing',
+        authorize: Privileges.Administration
+      }
+    },
+    {
+      path: AppRouteNames.Transaction,
+      loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+      data: {
+        title: 'Transaction',
+        authorize: Privileges.Administration
+      }
+    },
+    {
+      path: AppRouteNames.StockManagement,
+      loadChildren: () => import('./stock/stock.module').then(m => m.StockModule),
+      data: {
+        title: 'Stock Management',
+      }
+    },
+    {
       path: AppRouteNames.StationMgt,
       loadChildren: () => import('./station-management/station-management.module').then(m => m.StationManagementModule),
       data: {
@@ -61,6 +84,11 @@ export const routes: Routes = [{
       path: AppRouteNames.ProductReceived,
       loadChildren: () => import('./product-received/product-received.module').then(m => m.ProductReceivedModule),
       data: { title: 'ProductReceived' }
+    },
+    {
+      path: AppRouteNames.OutletSales,
+      loadChildren: () => import('./outlet-sales/outlet-sales.module').then(m => m.OutletSalesModule),
+      data: { title: 'Outlet Sales' }
     },
     {
       path: AppRouteNames.UserProfile,

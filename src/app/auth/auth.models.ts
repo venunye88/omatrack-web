@@ -1,5 +1,5 @@
 import { AuditFields } from "../shared/shared.model";
-import { Station } from 'app/models/station.model';
+import { Outlet } from 'app/models/station.model';
 
 interface User {
     id: string
@@ -9,8 +9,7 @@ interface User {
     type: string
     station: string
     phoneNumber: string
-    stations: Station[]
-    currentLocation: Station
+    outlet: string
     picture: string
     token: string
     role: Role

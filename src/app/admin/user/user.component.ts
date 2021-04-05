@@ -8,8 +8,7 @@ import { RoleService } from 'app/services/role.service';
 import { LoadingMessages, Enums } from 'app/shared/config-keys';
 import { MessageBox } from 'app/shared/message-helper';
 import { Enum, LookupService } from 'app/services/lookup.service';
-import { StationService } from 'app/services/station.service';
-import { Station } from 'app/models/station.model';
+import { Outlet, OutletService } from 'app/services/outlet.service';
 
 @Component({
   selector: 'app-user',
@@ -22,12 +21,12 @@ export class UserComponent implements OnInit {
   userForm: FormGroup;
   roles: Observable<Role[]>;
   users: Observable<User[]>;
-  stations: Observable<Station[]>
+  outlets: Observable<Outlet[]>
   userTypes: Enum[]
 
   @BlockUI('loading') loading: NgBlockUI;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private roleService: RoleService, private lookUpService: LookupService, private stationService: StationService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private roleService: RoleService, private lookUpService: LookupService, private outletService: OutletService) { }
 
   ngOnInit(): void {
     this.setUpForm();
@@ -38,7 +37,7 @@ export class UserComponent implements OnInit {
   }
 
   async fetchStations() {
-    this.stations = this.stationService.get();
+    this.outlets = this.outletService.get();
   }
 
   openForm(user?: User) {

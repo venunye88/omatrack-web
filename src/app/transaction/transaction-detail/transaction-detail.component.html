@@ -1,0 +1,278 @@
+<div class="custom-panel" id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row row-stat" *blockUI="'loading'">
+      <div class="col-md-12">
+        <div class="panel panel-default p-0">
+          <div class="panel-heading">
+            <span class="panel-title"><i class="fas fa-coins mr-2"></i> Transaction Detail</span>
+            <button type="button" class="btn  btn-light btn-xs pull-right text-primary" style="padding:2px"
+              (click)="return()"><i class="fas fa-long-arrow-alt-left"></i>
+              Return</button>
+          </div>
+          <div class="panel-body p-3">
+            <h3><span class="text-info">{{transaction?.outlet}}</span>
+              <p class="text-danger pull-right" style="font-size:medium;">{{transaction?.date |date:"fullDate"}}
+                <br>
+                <small class="text-muted pull-right" style="font-size:medium;">{{transaction?.date |date:"shortTime"}}
+                </small>
+              </p>
+              <br>
+              <p class="text-muted" style="font-size:medium;">{{transaction?.region}} </p>
+            </h3>
+            <h6 class="text-bold my-3">#{{transaction?.referenceNumber}}</h6>
+
+            <form [formGroup]="detailForm">
+              <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                <li ngbNavItem>
+                  <a ngbNavLink>Daily Sales <span
+                      class="badge badge-dark ml-2 p-2">{{transaction?.pumpSales.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Nozzle</th>
+                              <th>Product</th>
+                              <th>Opening Reading</th>
+                              <th>Closing Reading</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.pumpSales;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.nozzleName}}</td>
+                              <td>{{transaction.product}}</td>
+                              <td>{{transaction.openingReading}}</td>
+                              <td>{{transaction.closingReading}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'pumpsale')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Products Received <span
+                      class="badge badge-secondary ml-2 p-2">{{transaction?.productsReceived.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Product</th>
+                              <th>Quantity</th>
+                              <th>Value</th>
+                              <th>Shortage</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.productsReceived;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.product}}</td>
+                              <td>{{transaction.quantity}}</td>
+                              <td>{{transaction.value}}</td>
+                              <td>{{transaction.shortage}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'productreceived')"><i
+                                  class="fas fa-trash"></i></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Expenses <span
+                      class="badge badge-warning ml-2 p-2">{{transaction?.expenses.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Expense Type</th>
+                              <th>Value</th>
+                              <th>Authorised By</th>
+                              <th>Received By</th>
+                              <th>Narration</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.expenses;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.expenseType}}</td>
+                              <td>{{transaction.value}}</td>
+                              <td>{{transaction.authorisedBy}}</td>
+                              <td>{{transaction.receivedBy}}</td>
+                              <td class="text-wrap">{{transaction.narration}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'expenses')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Credit Sales <span
+                      class="badge badge-primary ml-2 p-2">{{transaction?.creditSales.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Creditor</th>
+                              <th>Product</th>
+                              <th>Quantity</th>
+                              <th>Value</th>
+                              <th>Approved By</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.creditSales;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.creditor}}</td>
+                              <td>{{transaction.product}}</td>
+                              <td>{{transaction.quantity}}</td>
+                              <td>{{transaction.value}}</td>
+                              <td>{{transaction.approvedBy}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'creditsale')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Credit Payment <span
+                      class="badge badge-danger ml-2 p-2">{{transaction?.creditPayments.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Creditor</th>
+                              <th>Amount</th>
+                              <th>Narration</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.creditPayments;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.creditor}}</td>
+                              <td>{{transaction.amount}}</td>
+                              <td>{{transaction.narration}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'creditpayment')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Daily Banking <span
+                      class="badge badge-success ml-2 p-2">{{transaction?.dailyBankings.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Bank</th>
+                              <th>Amount</th>
+                              <th>Narration</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.dailyBankings;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.bank}}</td>
+                              <td>{{transaction.amount}}</td>
+                              <td>{{transaction.narration}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'dailybanking')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+                <li ngbNavItem>
+                  <a ngbNavLink>Stock Operations <span
+                      class="badge badge-info ml-2 p-2">{{transaction?.stockOperations.length}}</span></a>
+                  <ng-template ngbNavContent>
+                    <div class="m-3">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="num_col_1">#</th>
+                              <th>Product</th>
+                              <th>Opening Stock</th>
+                              <th>Closing Stock</th>
+                              <th class="num_col_1"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let transaction of transaction?.stockOperations;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{transaction.product}}</td>
+                              <td>{{transaction.openingStock}}</td>
+                              <td>{{transaction.closingStock}}</td>
+                              <td class="text-danger pointer" (click)="remove(i,'stockoperation')"><i
+                                  class="fas fa-trash"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="nav"></div>
+
+              <span class="ml-3">
+                <button type="button" class="btn btn-success btn-md" authorize="Transaction.Update" *ngIf="!isTouched"
+                  (click)="save(transaction,'approve')">
+                  Approve</button>
+                <button type="button" class="btn btn-warning btn-md" authorize="Transaction.Update" *ngIf="isTouched"
+                  (click)="save(transaction,'correction')"> Pending
+                  Correction</button>
+              </span>
+            </form>
+          </div> <!-- end of body -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

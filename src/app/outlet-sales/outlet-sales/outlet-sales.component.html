@@ -1,0 +1,70 @@
+<div class="custom-panel row" *blockUI="'loading'">
+
+    <div class="col-md-12">
+        <div class="panel panel-default p-0 m-0">
+            <div class="panel-heading">
+                <span class="panel-title ml-2">Transaction</span>
+            </div>
+            <div class="panel-body">
+<form>
+    <div class="form-row mb-4">
+        <div class="col-md-4">
+            <label class="required">Station</label>
+            <ng-select [items]="[{id:0,name:'isaac'}]" bindLabel="name" bindValue="id"  placeholder="Select Station">
+            </ng-select>
+        </div>
+        <div class="col-md-4">
+            <label for="date" class="required">Date</label>
+            <input type="date" name="date" class="form-control c-height p-2" [max]="maxDate">
+        </div>
+        <div class="col-sm-4">
+            <label for="referenceNumber">Ref. No.</label>
+            <input type="text"  class="form-control c-height bg-white"  id="referenceNumber" readonly>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-3">dd</div>
+        <div class="col-md-3">dd</div>
+        <div class="col-md-3">dd</div>
+        <div class="col-md-3">dd</div>
+    </div>
+
+
+    <div class="mt-4 s-tab">
+        <tabset>
+          <tab heading="Sales Detail" customClass="s-tab">
+            <p>Sales Detail</p>
+          </tab>
+          <tab heading="Credit Sales">
+            <p>Credit Sales</p>
+          </tab>
+          <tab heading="Expenses">
+            <p >Expenses</p>
+          </tab>
+          <!-- <tab>
+            <ng-template tabHeading>
+              <i class="glyphicon glyphicon-bell"></i> Alert!
+            </ng-template>
+            <p class="xs-mt-10 xs-mb-10">I've got an HTML heading, and a select callback. Pretty cool!</p>
+          </tab> -->
+        </tabset>
+      </div>
+    
+
+
+
+</form>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,66 @@
+<form [formGroup]="stockForm" (ngSubmit)="save(stockForm.value)" class="shadow">
+
+    <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-edit"></i>Create Stock</h5>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row">
+
+            <div class="col-sm-4">
+                <ng-select placeholder="Select Outlet" [items]="outlets | async" bindLabel="name" bindValue="id"
+                    formControlName="outletId" #ngOutlet required>
+                    <ng-template ng-option-tmp let-item="item">
+                        {{item.name}} <br />
+                        <small>{{item.region}}</small>
+                    </ng-template>
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div formArrayName="stocks">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Stock</th>
+                        <th>Reorder Level</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stock of stocks.controls; let i=index;" [formGroupName]="i">
+                        <td style="width:40%">
+                            <ng-select [items]="products | async" bindLabel="name" bindValue="id"
+                                placeholder="Select Product" formControlName="productId"
+                                (change)="onProductSelected($event)" required>
+                            </ng-select>
+                        </td>
+                        <td>
+                            <input type="number" name="stock" class="form-control" formControlName="quantity" required>
+                        </td>
+                        <td>
+                            <input type="number" name="stock" class="form-control" formControlName="reorderLevel"
+                                required>
+                        </td>
+                        <td class="text-center" style="width:10%">
+                            <button *ngIf="stocks.length>1" type="button" class="btn btn-danger btn-sm ml-2"
+                                (click)="removeStock(i)"><i class="fas fa-minus"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" authorize="Nozzle.Delete" class="btn btn-info btn-sm  " (click)="addStock()"
+                [disabled]="stockForm.get('stocks').invalid"><i class="fas fa-plus"></i> Add More</button>
+        </div>
+
+    </div>
+    <div class="modal-footer" style="display: flow-root">
+        <!-- <button type="button" class="btn btn-danger" (click)="delete(stockForm.value.id)" *ngIf="stockForm.value.id"> 
+            Delete</button>-->
+        <button type="button" class="btn btn-outline-dark float-right"
+            (click)="activeModal.close('Close click')">Close</button>
+        <button type="submit" class="btn btn-success float-right mr-5" [disabled]="!stockForm.valid"> Save
+            Stock</button>
+    </div>
+</form>

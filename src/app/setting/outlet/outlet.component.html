@@ -1,0 +1,86 @@
+<div class="custom-panel">
+    <div class="row" *blockUI="'loading'">
+        <div class="col-md-5" *ngIf="showForm">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading"><span class="panel-title">
+                        <i class="fa fas-edit mr-2"></i>Outlet Detail </span> <span class="pull-right mr-2 "
+                        (click)="closeForm()"> <i class="fa fa-window-close" aria-hidden="true"></i>
+                    </span></div>
+                <div class="panel-body">
+                    <form [formGroup]="outletForm" (ngSubmit)="save(outletForm.value)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                [validate-form-control]="outletForm.controls.name" error-message="Name is required"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber">
+                        </div>
+                        <div class="form-group">
+                            <label>Region</label>
+                            <ng-select class="custom" [items]="regions | async" bindLabel="name" bindValue="id"
+                                formControlName="regionId" required>
+                            </ng-select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price Group</label>
+                            <ng-select [items]="priceGroups | async" bindLabel="name" bindValue="id"
+                                formControlName="priceGroupId">
+                            </ng-select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" rows="3" formControlName="address"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2" authorize="Outlet.Create">Save
+                            Changes</button>
+                        <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+                        <button type="button" class="btn btn-danger pull-right" (click)="delete(outletForm.value)"
+                            *ngIf="outletForm.value.id">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+            <div class="panel panel-default p-0 m-0">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <i class="fas fa-store-alt mr-2"></i>Outlets</span>
+                    <button type="button" name="" id="" class="btn btn-show pull-right" btn-sm btn-block
+                        (click)="openForm()"><i class="fa fa-edit" aria-hidden="true"></i> New Outlet</button>
+                </div>
+                <div class="panel-body p-0">
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="num_col_1">#</th>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Region</th>
+                                    <th>Price Group</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let outlet of outlets | async; let i = index;" class="pointer"
+                                    (click)="openForm(outlet)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{outlet.name}}</td>
+                                    <td>{{outlet.phoneNumber}}</td>
+                                    <td>{{outlet.regionName}}</td>
+                                    <td>{{outlet.priceGroupName || '-'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-sm btn-primary light-bd mt-2 pull-right" (click)="loadMore(filter)">Load more
+                ...</button>
+        </div>
+
+    </div>
+</div>
