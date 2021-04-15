@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
 
   openForm(user?: User) {
     this.userForm.reset();
-    this.showForm = true
+    this.showForm = true;
     if (user != null) { this.userForm.patchValue(user); }
   }
 
@@ -94,11 +94,11 @@ export class UserComponent implements OnInit {
       password: null,
       confirmPassword: null,
       profileId: 0,
-      type: '',
-      stationId: null,
-      number: '',
-      picture: '',
-      file: null,
+      type: null,
+      outletId: null,
+      // number: '',
+      // picture: '',
+      // file: null,
       // stations: []
     })
 

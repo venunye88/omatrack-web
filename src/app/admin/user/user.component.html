@@ -1,7 +1,7 @@
 <div class="custom-panel" id="page-wrapper">
   <div class="container-fluid">
     <div class="row row-stat" *blockUI="'loading'">
-      <div class="col-sm-5" *ngIf="showForm">
+      <div class="col-sm-4" *ngIf="showForm">
         <div class="panel panel-default p-0">
           <div class="panel-heading ">
             <span class="panel-title"><i class="fas fa-edit mr-2"></i> Enter User Details</span>
@@ -16,27 +16,27 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" required id="name" formControlName="name"
                     [validate-form-control]="userForm.controls.name" error-message="Name is required">
-                  <div class="input-group-append img-append">
+                  <!-- <div class="input-group-append img-append">
                     <img
                       [src]="userForm.value.file ? userForm.value.picture : (userForm.value.picture | imageLoad : 'upload.png' | async)"
                       alt="" (click)="fu.click()">
                     <input type="file" class="d-none" id="image" [file-reader]="userForm.controls.picture" #fu
                       formControlName="file">
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
               <div class="col-sm-12 form-row m-0 p-0">
-                <div class="col-sm-6 mb-3 pl-0">
+                <div class="col-sm-12 mb-12 pl-0">
                   <label for="lastName">Username</label>
                   <input type="text" class="form-control" required id="username" formControlName="username"
                     [attr.disabled]="userForm.value.id" [validate-form-control]="userForm.controls.username"
                     error-message="Username is required">
                 </div>
-                <div class="col-sm-6 mb-3 pr-0">
+                <!-- <div class="col-sm-6 mb-3 pr-0">
                   <label for="number">Staff ID</label>
                   <input type="text" class="form-control" id="number" formControlName="number">
-                </div>
+                </div> -->
               </div>
 
               <div class="col-sm-12 form-row m-0 p-0">
@@ -65,21 +65,22 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Station</label>
-                <ng-select [items]="stations | async" bindLabel="name" bindValue="id" formControlName="stationId"
+                <label>Outlet</label>
+                <ng-select [items]="outlets | async" bindLabel="name" bindValue="id" formControlName="outletId"
                   required>
                 </ng-select>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" formControlName="password" autocomplete="">
+                <input type="password" class="form-control" id="password" required formControlName="password"
+                  [validate-form-control]="userForm.controls.password" autocomplete="">
               </div>
 
               <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
                   [equalTo]="userForm.controls.password" [validate-form-control]="userForm.controls.confirmPassword"
-                  autocomplete="">
+                  required autocomplete="">
               </div>
 
 
@@ -93,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div [ngClass]="showForm ? 'col-md-7' : 'col-md-12'">
+      <div [ngClass]="showForm ? 'col-md-8' : 'col-md-12'">
         <div class="panel panel-default p-0">
           <div class="panel-heading">
             <span class="panel-title"><i class="fas fa-users mr-2"></i> Users</span>
@@ -117,7 +118,7 @@
                     <th class="num_col_1">#</th>
                     <th>Name</th>
                     <th>Phone Number</th>
-                    <th>Station</th>
+                    <th>Outlet</th>
                     <th>Role</th>
                   </tr>
                 </thead>
@@ -129,7 +130,7 @@
                       <span class="cell-detail-description">{{user.username}}</span>
                     </td>
                     <td>{{user.phoneNumber}}</td>
-                    <td>{{user.stationName}}</td>
+                    <td>{{user.outlet}}</td>
                     <td class="cell-detail"><span>{{user.profileName}}</span> <span
                         class="cell-detail-description">{{user.type}}</span>
                     </td>

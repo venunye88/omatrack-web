@@ -1,29 +1,29 @@
 <div class="row" *blockUI="'account'">
-    <div class="col-md-10 offset-md-1">
-        <form [formGroup]="accountForm" (ngSubmit)="save(accountForm.value)">
+  <div class="col-md-10 offset-md-1">
+    <form [formGroup]="accountForm" (ngSubmit)="save(accountForm.value)">
 
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" formControlName="name" required
-                    [validate-form-control]="accountForm.controls.name" error-message="Name is required">
-            </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required
+          [validate-form-control]="accountForm.controls.name" error-message="Name is required">
+      </div>
 
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber"
-                        pattern="^\d{10}$" maxlength="10" [validate-form-control]="accountForm.controls.phoneNumber"
-                        error-message="Invalid Phone Number">
-                </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" pattern="^\d{10}$"
+            maxlength="10" [validate-form-control]="accountForm.controls.phoneNumber"
+            error-message="Invalid Phone Number">
+        </div>
 
-                <div class="col-md-6 mb-3">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" formControlName="email" ngvemail
-                        [validate-form-control]="accountForm.controls.email" error-message="Invalid Email">
-                </div>
-            </div>
+        <div class="col-md-6 mb-3">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email" ngvemail
+            [validate-form-control]="accountForm.controls.email" error-message="Invalid Email">
+        </div>
+      </div>
 
-            <div class="form-group">
+      <!-- <div class="form-group">
                 <label for="exampleFormControlFile1">Profile Picture</label>
                 <div class="input-group">
                     <div class="input-group-prepend img-prepend">
@@ -38,17 +38,22 @@
                     </div>
                 </div>
                 <small id="emailHelp" class="form-text text-muted">
-                    Upload a JPG or PNG image file less than 200 KB.</small>
-            </div>
+                    Upload a JPG or PNG image file less than 200 KB.</small> 
+  </div>-->
 
-            <hr style="margin-bottom: 8px;border-width:0.5px;background:#7a7676" class="mt-6">
-            <div class="form-actions">
-                <input type="password" class="form-control ml-auto mr-3" id="input06"
-                    placeholder="Enter Current Password" required formControlName="password" autocomplete="">
-                <button type="submit" [disabled]="!accountForm.valid" class="btn btn-success">Save
-                    Changes</button>
-            </div>
+      <!-- <hr style="margin-bottom: 8px;border-width:0.5px;background:#7a7676" class="mt-6"> -->
+      <div class="form-row">
+        <div class="col-md-8">
+          <label for="email">Password</label>
+          <input type="password" class="form-control ml-auto mr-3" id="input06" placeholder="Enter Current Password"
+            required formControlName="password" autocomplete="">
+        </div>
+        <div class="col-md-4">
+          <button type="submit" [disabled]="!accountForm.valid" class="btn btn-success pull-right mt-4">Save
+            Changes</button>
+        </div>
+      </div>
 
-        </form>
-    </div>
+    </form>
+  </div>
 </div>
