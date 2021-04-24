@@ -14,7 +14,7 @@ export class TransactionService extends BaseService<Transaction>{
 
 
   summaryQuery(filter: any) {
-    return this.http.get<any[]>(`${environment.baseApi}/transactions/summary?${this.getQueryString(filter)}`)
+    return this.http.get<any[]>(`${environment.baseApi}/transactions/summary`)
   }
 
   protected getQueryString(filter: object) {
@@ -45,6 +45,6 @@ export interface Transaction {
 
 export enum Status {
   Pending,
-  Approved,
-  Correction
+  Correction,
+  Approved
 }

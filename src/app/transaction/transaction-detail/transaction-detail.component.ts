@@ -220,13 +220,13 @@ export class TransactionDetailComponent implements OnInit {
     }
   }
 
-  save(transaction: Transaction, status) {
+  async save(transaction: Transaction, status) {
     if (status == 'approve') transaction.status = Status.Approved;
     else { transaction.status = Status.Correction }
 
     try {
       this.loading.start();
-      var res = this.transactionService.save(transaction);
+      var res = await this.transactionService.save(transaction);
       if (res) {
         this.router.navigate([`${AppRouteNames.Transaction}`]);
       }
