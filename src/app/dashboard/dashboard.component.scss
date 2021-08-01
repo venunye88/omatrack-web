@@ -1,0 +1,94 @@
+.icon-box {
+  width: 45px;
+  height: 45px;
+  float: left;
+  margin-right: 8px;
+  border: 1px solid none;
+  border-radius: 25%;
+  text-align: center;
+
+  .fa {
+    color: #ffffff;
+    font-size: 30px;
+    padding: 8px 0 0 0;
+  }
+}
+
+.icon-box-mini {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 8px;
+  border: 1px solid none;
+  border-radius: 25%;
+  text-align: center;
+
+  .fa {
+    color: #ffffff;
+    font-size: 18px;
+    padding: 8px 0 0 0;
+  }
+}
+
+.bg-mauve {
+  background: #922494;
+}
+.bg-blue {
+  background: #4a72cc;
+}
+.bg-red {
+  background: #dc3545;
+}
+.bg-green {
+  background: #2ecc58;
+}
+.bg-white {
+  background: #ffffff;
+}
+.bg-Yellow {
+  background: #ffff00;
+}
+.bg-gold {
+  background-color: #daa520;
+}
+.bg-silver {
+  background-color: #c0c0c0;
+}
+.bg-bronze {
+  background-color: #cd7f32;
+}
+.bg-brown {
+  background-color: #55310e;
+}
+
+.row-stat .md-title {
+  opacity: 0.9;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.md-desc {
+  color: #000;
+}
+
+.br {
+  border-right: 1px solid #d1c2c2;
+}
+
+.rc {
+  border-radius: 10px;
+}
+
+// .card-item {
+//   // margin-bottom: 15px;
+// }
+
+.lb {
+  border-bottom: 1px solid #f1eaea;
+}
+
+.max-h {
+  height: 56%;
+  max-height: 56%;
+}

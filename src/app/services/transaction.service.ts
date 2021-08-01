@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Dashboard } from 'app/dashboard/dashboard.component';
 import { environment } from 'environments/environment';
 import { BaseService } from './base-service';
 
@@ -14,7 +15,11 @@ export class TransactionService extends BaseService<Transaction>{
 
 
   summaryQuery(filter: any) {
-    return this.http.get<any[]>(`${environment.baseApi}/transactions/summary`)
+    return this.http.get<any[]>(`${environment.baseApi}/transactions/summary`);
+  }
+
+  fetchDashboard() {
+    return this.http.get<Dashboard>(`${environment.baseApi}/transactions/dashboard`).toPromise();
   }
 
   protected getQueryString(filter: object) {

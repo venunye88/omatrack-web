@@ -5,16 +5,18 @@ import { ImageLoadPipe } from './image-load.pipe';
 import { StationPipe } from './station.pipe';
 import { AccountGroupPipe } from './account-group.pipe';
 import { AccountPipe } from './account.pipe';
+import { SafePipe } from './safe.pipe';
 
 
 
 @NgModule({
-  declarations: [ImageLoadPipe, UserPipe, StationPipe, AccountGroupPipe, AccountPipe],
+  declarations: [ImageLoadPipe, UserPipe, StationPipe, AccountGroupPipe, AccountPipe, SafePipe],
   exports: [
     ImageLoadPipe,
     UserPipe,
     StationPipe,
-    AccountPipe
+    AccountPipe,
+    SafePipe,
   ]
 })
 export class FilterModule { }

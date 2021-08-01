@@ -77,7 +77,7 @@ export const DROPDOWNROUTES: MenuInfo[] = [
     ]
   },
   {
-    title: "Reports", icon: "fas fa-chart-bar", route: "/settings",
+    title: "Reports", icon: "fas fa-chart-bar", route: "/reports",
     privilege: Privileges.Report,
     subMenus: []
   },

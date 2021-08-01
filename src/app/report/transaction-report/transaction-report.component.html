@@ -1,0 +1,60 @@
+<div>
+  <div class="row">
+    <!-- <button class="btn btn-success">Run Report</button> -->
+  </div>
+  <div class="report-view">
+    <div class="card">
+      <div class="card-body">
+        <div class="row no-gutters">
+          <div class="col-sm-3 mr-3">
+            <ng-select class="custom" [items]="outlets" bindLabel="name" bindValue="name" [(ngModel)]="filter.outlet"
+              placeholder="Select Outlet" required>
+            </ng-select>
+          </div>
+          <div class="col-sm-3 mr-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  Start
+                </span>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="filter.startDate" placeholder="Start Date"
+                aria-label="Start Date" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  End
+                </span>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="filter.endDate" placeholder="Start Date"
+                aria-label="End Date" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-sm btn-primary mr-0 pull-right" (click)="runReport()">Run Report</button>
+          </div>
+        </div>
+
+        <hr class="mt-0">
+        <div class="btn-group">
+          <button class="btn btn-sm btn-danger mr-0" (click)="downloadReport('pdf')"><i class="far fa-file-pdf"></i>
+            PDF</button>
+          <button class="btn btn-sm btn-success mr-0" (click)="downloadReport('csv')"><i class="far fa-file-excel"></i>
+            Excel</button>
+        </div>
+        <!-- <button class="btn btn-sm btn-primary mr-0 pull-right" (click)="runReport()">Run Report</button> -->
+
+      </div>
+      <div class="card-body" *ngIf="pdfUrl">
+        <h5 class="card-title mb-2 text-center">TRANSACTION REPORT</h5>
+        <!--  -->
+        <div id="report" class="rptFrame text-center">
+          <iframe [src]="pdfUrl | safe : 'resourceUrl'" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

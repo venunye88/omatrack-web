@@ -81,6 +81,14 @@ export const routes: Routes = [{
       }
     },
     {
+      path: AppRouteNames.Reports,
+      loadChildren: () => import('./report/report.module').then(m => m.ReportModule),
+      data: {
+        title: 'Setting',
+        authorize: Privileges.Report
+      }
+    },
+    {
       path: AppRouteNames.ProductReceived,
       loadChildren: () => import('./product-received/product-received.module').then(m => m.ProductReceivedModule),
       data: { title: 'ProductReceived' }

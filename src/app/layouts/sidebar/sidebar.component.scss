@@ -1,87 +1,83 @@
-.nav-dropdown-items{
-    list-style-type: none;
-    padding:0;
+.nav-dropdown-items {
+  list-style-type: none;
+  padding: 0;
 }
-.nav-dropdown-items>.nav-item a{
-    background-color: #fff !important;
+.nav-dropdown-items > .nav-item a {
+  background-color: #fff !important;
 }
-.nav-dropdown-items>.nav-item a:hover{
-    background-color: #8f8a8a71 !important;
+.nav-dropdown-items > .nav-item a:hover {
+  background-color: #8f8a8a71 !important;
 }
-.nav-dropdown-items>.nav-item>.nav-link:hover,.nav-dropdown-items>.nav-item>.nav-link.active{
-    background-color: #0000004d !important;
-    color: inherit;
-}
-
-.close{
-    display: none;
+.nav-dropdown-items > .nav-item > .nav-link:hover,
+.nav-dropdown-items > .nav-item > .nav-link.active {
+  background-color: #0000004d !important;
+  color: inherit;
 }
 
+.close {
+  display: none;
+}
 
 .sidebar ul li.active {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .sidebar ul li.active a {
-    color: #032447;
+  color: #032447;
 }
 
-
-.sidebar{
-    overflow-y: auto;
-    background-image: url("/assets/images/oil-well-il.jpg");
-    background-position: center;
+.sidebar {
+  overflow-y: auto;
+  background-image: url("/assets/images/oil-well-il.jpg");
+  background-position: center;
 }
 
 i.caret {
-    float: right;
-    // color: #808080 !important;
-    text-align: center;
+  float: right;
+  // color: #808080 !important;
+  text-align: center;
 }
 
-
-
-
-li:focus-within{
-    a.parent-active{
+li:focus-within {
+  a.parent-active {
     // background-color: #1f6b9e !important;
     // background-color: #3c90b8 !important;
     background-color: #60b83c !important;
-    color:#fff !important;
-    i{color: #fff !important;}
+    color: #fff !important;
+    i {
+      color: #fff !important;
+    }
     // .caret{
-    //     transform: rotate(90deg); 
+    //     transform: rotate(90deg);
     //     transition: all 0.2s ease-in-out 0s;
     // }
-    }
+  }
 }
 
-.caret-right{
-    transform: rotate(360deg); 
-    transition: all 0.2s ease-in-out 0s;
+.caret-right {
+  transform: rotate(360deg);
+  transition: all 0.2s ease-in-out 0s;
 }
 
-.caret-down{
-    transform: rotate(90deg); 
-    transition: all 0.2s ease-in-out 0s;
+.caret-down {
+  transform: rotate(90deg);
+  transition: all 0.2s ease-in-out 0s;
 }
 
-.caret-right,.caret-down{
-    float: right;
-    text-align: center;
+.caret-right,
+.caret-down {
+  float: right;
+  text-align: center;
 }
 
-
-.nav-dropdown-items>.nav-item a:focus{
-    background-color: #8f8a8a71 !important;
-    
-}
- 
-
-ul#side-menu li:last-child a:first-child{
-    border-bottom: 1px solid #5d677029 !important;
+.nav-dropdown-items > .nav-item a:focus {
+  background-color: #8f8a8a71 !important;
 }
 
-ul#side-menu a.parent-active{
-    font-size: 18px;
+ul#side-menu li:last-child a:first-child {
+  border-bottom: 1px solid #5d677029 !important;
+}
+
+ul#side-menu a.parent-active {
+  font-size: 18px;
 }
