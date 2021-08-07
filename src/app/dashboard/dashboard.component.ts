@@ -136,7 +136,7 @@ export class DashboardComponent implements OnInit {
 
 
 export interface Dashboard {
-  YearSalesVolume: number
+  yearSalesVolume: number
   yearSalesValue: number
   currentMonthSales: number
   currentMonthBanking: number

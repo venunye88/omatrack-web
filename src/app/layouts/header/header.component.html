@@ -20,12 +20,12 @@
           {{user.name}}
         </button>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
-          <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="logout()"> <i
-                class="fa fa-lock"></i> Logout</a></li>
-          <li class="divider dropdown-divider"></li>
           <li role="menuitem"><a class="dropdown-item" routerLink="/profile"><i class="far fa-id-badge"></i>
               Profile</a>
           </li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="logout()"> <i
+                class="fa fa-lock"></i> Logout</a></li>
         </ul>
       </div>
 
